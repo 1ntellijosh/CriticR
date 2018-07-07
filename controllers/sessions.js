@@ -9,7 +9,10 @@ router.get('/new', (req, res) => {
 
 router.post('/', (req, res) => {
   Users.findOne({username: req.body.username}, (err, foundUser) => {
-    if(req.body.password == foundUser.password) {
+    if(!foundUser) {
+      res.redirect('/invalid');
+    }
+    else if(req.body.password == foundUser.password) {
       req.session.currentUser = foundUser;
       res.redirect('/')
     }
