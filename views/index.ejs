@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CriticR</title>
+  </head>
+  <body class="HolyGrail">
+    <div class="header">
+      <!-- title //not used on main index page\\-->
+      <div class="header-title">
+        <!-- <a href=""><h5>CriticR</h5></a> -->
+      </div>
+      <!-- navigation -->
+      <div class="header-nav">
+        <ul>
+          <!-- </%if(!user) { %> -->
+          <!-- add your link to the log in page here -->
+          <li>
+            <a href="/sessions/new">Log In</a>
+          </li>
+          <!-- add your link to create a user here -->
+          <li>
+            <a href="/users/new">Register to Review</a>
+          </li>
+          <!-- </% } else { %> -->
+          <li>
+              <a href="/review/new">Add Review</a>
+          </li>
+          <!-- log out -->
+          <li>
+            <form action="/sessions?_method=DELETE" method="POST">
+              <input type="submit" value="Log Off" />
+            </form>
+          </li>
+          <!-- </% } %> -->
+        </ul>
+      </div>
+    </div>
+    <h1>CriticR</h1>
+    <h3>Reviews By The People, For The People</h3>
+    <div class="HolyGrail-body">
+
+      <main class="HolyGrail-content">
+        <div id="frontNav">
+          <ul id="frontNavLinks">
+              <li id="filter">
+                Movies
+              </li>
+              <li id="filter">
+                Video Games
+              </li>
+          </ul>
+        </div>
+
+        <div id="lineUp">
+          <!-- //reviews will go here\\ -->
+        </div>
+
+      </main>
+
+      <aside class="HolyGrail-ads">…</aside>
+
+    </div>
+    <footer>…</footer>
+  </body>
+</html>
