@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
     }
   })
 })
-//umm
+//umm.
 
 router.delete('/', (req, res) => {
   req.session.destroy(() => {
