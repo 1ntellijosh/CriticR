@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
       res.redirect('/')
     }
     else {
-      res.send('Invalid Login');
+      res.redirect('/invalid');
     }
   })
 })

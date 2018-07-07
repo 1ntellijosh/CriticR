@@ -30,6 +30,12 @@ app.get('/', (req, res) => {
   });
 })
 
+app.get('/invalid', (req, res) => {
+  res.render('invalid.ejs', {
+    user: req.session.currentUser
+  });
+})
+
 // CONTROLLERS
 const userController = require('./controllers/users.js');
 app.use('/users', userController);
