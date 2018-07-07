@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+      function goBack() {
+      window.history.back();
+      }
+    </script>
+  </head>
+  <body class="HolyGrail">
+    <div class="header">
+      <!-- title //not used on main index page\\-->
+      <div class="header-title">
+        <a href="/"><h5>CriticR</h5></a>
+      </div>
+      <!-- navigation -->
+      <div class="header-nav">
+        <ul>
+          <%if(!user) { %>
+          <!-- add your link to the log in page here -->
+          <li>
+            <a href="/sessions/new">Log In</a>
+          </li>
+          <!-- add your link to create a user here -->
+          <li>
+            <a href="/users/new">Register to Review</a>
+          </li>
+          <% } else { %>
+          <li>
+              <a href="/review/new">Add Review</a>
+          </li>
+          <!-- log out -->
+          <li>
+            <form action="/sessions?_method=DELETE" method="POST">
+              <input type="submit" value="Log Off" />
+            </form>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+    <div class="HolyGrail-body">
+
+      <main class="HolyGrail-content">
+
+        <h1>Invalid Login</h1>
+        <h2>Sorry don't have that one... Go back and try again.</h2>
+        <button onclick="goBack()">Go Back</button>
+
+      </main>
+
+      <aside class="HolyGrail-ads">…</aside>
+
+    </div>
+    <footer>…</footer>
+  </body>
+
+</html>
