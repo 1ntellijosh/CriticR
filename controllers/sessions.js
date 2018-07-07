@@ -1,6 +1,11 @@
+//dependencies
 const exp = require('express');
 const router = exp.Router();
 
+//encryption
+const bcrypt = require('bcrypt');
+
+//database schema
 const Users = require('../models/users.js');
 
 router.get('/new', (req, res) => {
@@ -12,7 +17,7 @@ router.post('/', (req, res) => {
     if(!foundUser) {
       res.redirect('/invalid');
     }
-    else if(req.body.password == foundUser.password) {
+    else if(bcrypt.compareSync(req.body.password, foundUser.password)) {
       req.session.currentUser = foundUser;
       res.redirect('/')
     }

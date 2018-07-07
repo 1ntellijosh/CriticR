@@ -1,0 +1,28 @@
+
+.HolyGrail {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.HolyGrail-body {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+}
+main {
+  width:90%;
+  display: flex;
+  flex-direction: column;
+}
+#frontNav {
+  width: 100%;
+  text-align: center;
+}
+#frontNavLinks li {
+  display: inline-block;
+  width: 46%;
+  padding: 8px;
+  margin: 0;
+  background-color: gray;
+}

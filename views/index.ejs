@@ -8,7 +8,7 @@
     <div class="header">
       <!-- title //not used on main index page\\-->
       <div class="header-title">
-        <!-- <a href=""><h5>CriticR</h5></a> -->
+        <!-- <a href="/"><h5>CriticR</h5></a> -->
       </div>
       <!-- navigation -->
       <div class="header-nav">
@@ -24,7 +24,7 @@
           </li>
           <% } else { %>
           <li>
-              <a href="/review/new">Add Review</a>
+              <a href="/reviews/new">Add Review</a>
           </li>
           <!-- log out -->
           <li>
@@ -43,17 +43,20 @@
       <main class="HolyGrail-content">
         <div id="frontNav">
           <ul id="frontNavLinks">
-              <li id="filter">
+              <li id="mfilter">
                 Movies
               </li>
-              <li id="filter">
+              <li id="vfilter">
                 Video Games
               </li>
           </ul>
         </div>
 
         <div id="lineUp">
-          <!-- //reviews will go here\\ -->
+          <a href="/reviews/new" id="newRevLink">+ --- Add Review</a>
+          <ul>
+                      <!-- //reviews will go here\\ -->
+          </ul>
         </div>
 
       </main>

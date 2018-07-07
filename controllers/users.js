@@ -2,10 +2,14 @@
 const exp = require('express');
 const router = exp.Router();
 
+//encryption
+const bcrypt = require('bcrypt');
+
 //pull database info
 const Users = require('../models/users.js');
 
 router.post('/', (req, res) => {
+  req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
   Users.create(req.body, (err, data) => {
     res.redirect('/');
   })

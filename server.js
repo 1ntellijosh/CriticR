@@ -21,7 +21,8 @@ app.use(session({
 }));
 
 //pull data for index page
-const Reviews = require('./models/reviews.js')
+const Reviews = require('./models/reviews.js');
+const Users = require('./models/users.js')
 
 //ROUTES
 app.get('/', (req, res) => {
@@ -42,7 +43,7 @@ app.use('/users', userController);
 const sessController = require('./controllers/sessions.js');
 app.use('/sessions', sessController);
 const revController = require('./controllers/reviews.js');
-
+app.use('/reviews', revController);
 //APP LISTENER
 app.listen(PORT, () => {
   console.log('listening on port ' + PORT);
