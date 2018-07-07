@@ -37,6 +37,13 @@ app.get('/invalid', (req, res) => {
   });
 })
 
+//delete user database
+app.get('/deleteusers', (req, res) => {
+  Users.remove({}, (err, data) => {
+    res.redirect('/');
+  });
+})
+
 // CONTROLLERS
 const userController = require('./controllers/users.js');
 app.use('/users', userController);
