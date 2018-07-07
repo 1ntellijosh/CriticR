@@ -51,7 +51,7 @@
           <a href="#" id="mFilter">Movies</a>
           <a href="#" id="gFilter">Games</a>
         </div>
-      <form class="movieRev" action="/reviews/movie/<%=user._id%>" method="POST">
+      <form class="movieRev on" action="/reviews/movie/<%=user._id%>" method="POST">
         <input type="text" name="title" placeholder="Movie Title"/>
         <input type="text" name="genre" placeholder="Genre" />
         <input type="text" name="img" placeholder="Please add each image link with a \',\' between them." />
@@ -113,7 +113,7 @@
         </div>
         <input type="submit" value="Submit Review" />
       </form>
-      <form class="gameRev" action="/reviews/game/<%=user._id%>" method="POST">
+      <form class="gameRev off" action="/reviews/game/<%=user._id%>" method="POST">
         <input type="text" name="title" placeholder="Game Title"/>
         <input type="text" name="genre" placeholder="Genre" />
         <input type="text" name="img" placeholder="Please add each image link with a \',\' between them." />
@@ -182,4 +182,14 @@
     </main>
     <footer>…</footer>
   </body>
+  <script>
+    $('#gFilter').click(function () {
+      $('.movieRev').removeClass('on').addClass('off');
+      $('.gameRev').removeClass('off').addClass('on');
+    });
+    $('#mFilter').click(function () {
+      $('.gameRev').removeClass('on').addClass('off');
+      $('.movieRev').removeClass('off').addClass('on');
+    });
+</script>
 </html>
