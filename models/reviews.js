@@ -6,7 +6,8 @@ const revSchema = new Schema({
   author: String,
   title: String,
   genre: String,
-
+  article: String,
+  images: [String],
   score: [Number],
   comments: [{username:String, comment: String}]
 }, {timestamps: true});

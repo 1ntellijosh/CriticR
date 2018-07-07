@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 
 ///DATABASE SETUP FOR HEROKU
 const mongoose = require('mongoose');
-const mongoUri =  process.env.MONGODB_URI || 'mongodb://localhost:27017/ffiction';
+const mongoUri =  process.env.MONGODB_URI || 'mongodb://localhost:27017/criticr';
 
 //MIDDLEWARE
 const methodOverride = require('method-override');
@@ -13,13 +13,29 @@ app.use(exp.static('public'));
 app.use(methodOverride('_method'));
 app.use(exp.urlencoded({ extended: false }))
 app.use(exp.json())
+const session = require('express-session');
+app.use(session({
+    secret: "feedmeseymour", //some random string
+    resave: false,
+    saveUninitialized: false
+}));
+
+//pull data for index page
+const Reviews = require('./models/reviews.js')
 
 //ROUTES
 app.get('/', (req, res) => {
-  res.render('index.ejs');
+  res.render('index.ejs', {
+    user: req.session.currentUser
+  });
 })
 
-//CONTROLLERS
+// CONTROLLERS
+const userController = require('./controllers/users.js');
+app.use('/users', userController);
+const sessController = require('./controllers/sessions.js');
+app.use('/sessions', sessController);
+const revController = require('./controllers/reviews.js');
 
 //APP LISTENER
 app.listen(PORT, () => {

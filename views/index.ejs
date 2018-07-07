@@ -13,7 +13,7 @@
       <!-- navigation -->
       <div class="header-nav">
         <ul>
-          <!-- </%if(!user) { %> -->
+          <%if(!user) { %>
           <!-- add your link to the log in page here -->
           <li>
             <a href="/sessions/new">Log In</a>
@@ -22,7 +22,7 @@
           <li>
             <a href="/users/new">Register to Review</a>
           </li>
-          <!-- </% } else { %> -->
+          <% } else { %>
           <li>
               <a href="/review/new">Add Review</a>
           </li>
@@ -32,7 +32,7 @@
               <input type="submit" value="Log Off" />
             </form>
           </li>
-          <!-- </% } %> -->
+          <% } %>
         </ul>
       </div>
     </div>
