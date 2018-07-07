@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Make New Review</title>
+    <script
+   src="https://code.jquery.com/jquery-3.3.1.min.js"
+   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+   crossorigin="anonymous">
+ </script>
+ <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  </head>
+  <body class="HolyGrail">
+    <div class="header">
+      <!-- title //not used on main index page\\-->
+      <div class="header-title">
+        <a href="/"><h5>CriticR</h5></a>
+      </div>
+      <!-- navigation -->
+      <div class="header-nav">
+        <ul>
+          <%if(!user) { %>
+          <!-- add your link to the log in page here -->
+          <li>
+            <a href="/sessions/new">Log In</a>
+          </li>
+          <!-- add your link to create a user here -->
+          <li>
+            <a href="/users/new">Register to Review</a>
+          </li>
+          <% } else { %>
+          <li>
+              <a href="/reviews/new">Add Review</a>
+          </li>
+          <!-- log out -->
+          <li>
+            <form action="/sessions?_method=DELETE" method="POST">
+              <input type="submit" value="Log Off" />
+            </form>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+    <div class="HolyGrail-body">
+
+      <main class="HolyGrail-content">
+
+        <h1><%=user.username%>: New Review</h1>
+        <div id="frontNav">
+          <a href="#" id="mFilter">Movies</a>
+          <a href="#" id="gFilter">Games</a>
+        </div>
+      <form class="movieRev" action="/reviews/movie/<%=user._id%>" method="POST">
+        <input type="text" name="title" placeholder="Movie Title"/>
+        <input type="text" name="genre" placeholder="Genre" />
+        <input type="text" name="img" placeholder="Please add each image link with a \',\' between them." />
+        <textarea name="article" id="article" value=""></textarea>
+        <!-- //score numbers\\ -->
+        <div id="scoreBox">
+          <label for="vis">SFX/Art/Cinematography:</label>
+          <select id="vis" name="vis">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <label for="dir">Direction/Writing/Performances:</label>
+          <select id="dir" name="dir">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <label for="snd">Sound:</label>
+          <select id="snd" name="snd">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <label for="til">Tilt (Curve Score +/-):</label>
+          <select id="til" name="til">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+        <input type="submit" value="Submit Review" />
+      </form>
+      <form class="gameRev" action="/reviews/game/<%=user._id%>" method="POST">
+        <input type="text" name="title" placeholder="Game Title"/>
+        <input type="text" name="genre" placeholder="Genre" />
+        <input type="text" name="img" placeholder="Please add each image link with a \',\' between them." />
+        <textarea name="article" id="article" value=""></textarea>
+        <div id="scoreBox">
+          <!-- //score numbers\\ -->
+          <label for="vis">GFX/Visual/Art:</label>
+          <select id="vis" name="vis">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <label for="dir">Gameplay/Direction/Writing:</label>
+          <select id="dir" name="dir">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <label for="snd">Sound:</label>
+          <select id="snd" name="snd">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <label for="til">Tilt (Curve Score +/-):</label>
+          <select id="til" name="til">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+        <input type="submit" value="Submit Review" />
+      </form>
+
+      <aside class="HolyGrail-ads">…</aside>
+
+    </div>
+    </main>
+    <footer>…</footer>
+  </body>
+</html>
