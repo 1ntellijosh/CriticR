@@ -12,6 +12,9 @@
   justify-content: center;
   text-align: center;
 }
+ul {
+  list-style-type: none;
+}
 #lineAside {
   width:86.5%;
   margin: 0 auto;

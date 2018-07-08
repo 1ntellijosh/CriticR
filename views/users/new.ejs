@@ -31,10 +31,16 @@
 
         <h1>New Critic Entry</h1>
         <form action="/users" method="POST">
-          <input type="text" name="username" placeholder="Enter Username"/>
-          <input type="password" name="password" placeholder="Password" />
-          <input type="text" name="img" placeholder="Profile image link" />
+        <fieldset class="">
+          <legend>&nbsp;&nbsp;&nbsp; NEW CRITIC ENTRY: </legend>
+          <label for="username">Username: </label>
+          <input id="username" type="text" name="username" />
+          <label for="password">Password: </label>
+          <input id="password" type="password" name="password" />
+          <label for="img">Profile Picture: </label>
+          <input id="img" type="text" name="img" placeholder="Profile image link" />
           <input type="submit" value="Register" />
+        </fieldset>
         </form>
 
       </main>
