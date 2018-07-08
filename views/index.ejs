@@ -3,6 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>CriticR</title>
+    <script
+       src="https://code.jquery.com/jquery-3.3.1.min.js"
+       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+       crossorigin="anonymous">
+    </script>
+ <link rel="stylesheet" type="text/css" href="/css/main.css" />
   </head>
   <body class="HolyGrail">
     <div class="header">
@@ -40,30 +46,45 @@
     <h3>Reviews By The People, For The People</h3>
     <div class="HolyGrail-body">
 
-      <main class="HolyGrail-content">
+      <div class="HolyGrail-content">
         <div id="frontNav">
-          <ul id="frontNavLinks">
-              <li id="mfilter">
-                Movies
-              </li>
-              <li id="vfilter">
-                Video Games
-              </li>
-          </ul>
+          <a href="#" id="mFilter">Movies</a>
+          <a href="#" id="gFilter">Games</a>
         </div>
 
-        <div id="lineUp">
-          <a href="/reviews/new" id="newRevLink">+ --- Add Review</a>
-          <ul>
-                      <!-- //reviews will go here\\ -->
-          </ul>
+        <div id="lineAside">
+          <main id="mLineUp" class="on">
+            <%for (let i = 0; i < mReviews.length; i+++) {
+            <ul>
+                        <!-- //reviews will go here\\ -->
+            </ul>
+            <% } %>
+          </main>
+          <main id="gLineUp" class="off">
+
+            <ul>
+                        <!-- //reviews will go here\\ -->
+            </ul>
+
+          </main>
+
+          <aside class="HolyGrail-ads">
+            <a href="/reviews/new" id="newRevLink">+ --- Add Review</a>
+          </aside>
+
         </div>
-
-      </main>
-
-      <aside class="HolyGrail-ads">…</aside>
-
+        </div>
     </div>
     <footer>…</footer>
   </body>
+  <script>
+    $('#gFilter').click(function () {
+      $('.mLineUp').removeClass('on').addClass('off');
+      $('.gLineUp').removeClass('off').addClass('on');
+    });
+    $('#mFilter').click(function () {
+      $('.gLineUp').removeClass('on').addClass('off');
+      $('.mLineUp').removeClass('off').addClass('on');
+    });
+</script>
 </html>

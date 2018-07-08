@@ -26,8 +26,17 @@ const Users = require('./models/users.js')
 
 //ROUTES
 app.get('/', (req, res) => {
+
+  let mReviews = Reviews.find({type: "movie"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, revs){
+    console.log(revs);
+  });
+  let gReviews = Reviews.find({type: "game"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, revs){
+    console.log(revs);
+  });
   res.render('index.ejs', {
-    user: req.session.currentUser
+    user: req.session.currentUser,
+    mReviews: mReviews,
+    gReviews: gReviews
   });
 })
 
@@ -43,6 +52,13 @@ app.get('/invalid', (req, res) => {
 //     res.redirect('/');
 //   });
 // })
+
+//delete review database
+app.get('/deleterevs', (req, res) => {
+  Reviews.remove({}, (err, data) => {
+    res.redirect('/');
+  });
+})
 
 // CONTROLLERS
 const userController = require('./controllers/users.js');
