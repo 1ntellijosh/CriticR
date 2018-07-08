@@ -4,7 +4,9 @@ const Schema = mongoose.Schema;
 const revSchema = new Schema({
   type: String,
   author: String,
+  username: String,
   title: String,
+  pub: String,
   genre: String,
   article: String,
   images: [String],

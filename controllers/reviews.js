@@ -6,12 +6,14 @@ const router = exp.Router();
 const Users = require('../models/users.js');
 const Reviews = require('../models/reviews.js');
 
-router.post('/:type/:id', (req, res) => {
+router.post('/:type/:id/:name', (req, res) => {
   //make a review object for database
   let review = {};
   review.type = req.params.type;
   review.author = req.params.id;
+  review.username = req.params.name;
   review.title = req.body.title;
+  review.pub = req.body.pub;
   review.genre = req.body.genre;
   review.article = req.body.article;
   review.images = req.body.img.split(', ');

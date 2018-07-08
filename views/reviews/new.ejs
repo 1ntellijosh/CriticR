@@ -53,8 +53,9 @@
         </div>
 
         <div id="lineAside">
-          <form class="movieRev on" action="/reviews/movie/<%=user._id%>" method="POST">
+          <form class="movieRev on" action="/reviews/movie/<%=user._id%>/<%=user.username%>" method="POST">
             <input type="text" name="title" placeholder="Movie Title"/>
+            <input type="text" name="pub" placeholder="Studio"/>
             <input type="text" name="genre" placeholder="Genre" />
             <input type="text" name="img" placeholder="Please add each image link with a \',\' between them." />
             <textarea name="article" id="article" value=""></textarea>
@@ -115,8 +116,9 @@
             </div>
             <input type="submit" value="Submit Review" />
           </form>
-      <form class="gameRev off" action="/reviews/game/<%=user._id%>" method="POST">
+      <form class="gameRev off" action="/reviews/game/<%=user._id%>/<%=user.username%>" method="POST">
         <input type="text" name="title" placeholder="Game Title"/>
+        <input type="text" name="pub" placeholder="Developer"/>
         <input type="text" name="genre" placeholder="Genre" />
         <input type="text" name="img" placeholder="Please add each image link with a \',\' between them." />
         <textarea name="article" id="article" value=""></textarea>

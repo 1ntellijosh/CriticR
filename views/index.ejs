@@ -53,18 +53,54 @@
         </div>
 
         <div id="lineAside">
-          <main id="mLineUp" class="on">
-            <%for (let i = 0; i < mReviews.length; i+++) {
-            <ul>
-                        <!-- //reviews will go here\\ -->
-            </ul>
-            <% } %>
-          </main>
-          <main id="gLineUp" class="off">
+          <main id="mLineUp" class="lineUps on">
 
-            <ul>
-                        <!-- //reviews will go here\\ -->
-            </ul>
+              <%for (let i = 0; i < mReviews.length; i++) { %>
+                <div class="viewWind on">
+
+                  <div class="vIm">
+                    <a href="#">
+                    <img src=<%=mReviews[i].images[0]%>>
+                    </a>
+                  </div>
+                  <div class="dIm">
+                    <p>Title: <%=mReviews[i].title%></p>
+                    <p>Studio/Production:  <%=mReviews[i].pub%></p>
+                    <p>Genre: <%=mReviews[i].genre%></p>
+                    <p>Critic: <%=mReviews[i].username%></p>
+                    <a href="#"><p>Read</p></a>
+                  </div>
+                  <div class="scoreBox">
+                    <h1 id="hScore"><%=mReviews[i].score[4]%></h1>
+                  </div>
+
+                </div>
+              <% } %>
+
+          </main>
+          <main id="gLineUp" class="lineUps off">
+
+            <%for (let i = 0; i < gReviews.length; i++) { %>
+              <div class="viewWind on">
+
+                <div class="vIm">
+                  <a href="#">
+                  <img src=<%=gReviews[i].images[0]%>>
+                  </a>
+                </div>
+                <div class="dIm">
+                  <p>Title: <%=gReviews[i].title%></p>
+                  <p>Developer: <%=gReviews[i].pub%></p>
+                  <p>Genre: <%=gReviews[i].genre%></p>
+                  <p>Critic: <%=gReviews[i].username%></p>
+                  <a href="#"><p>Read</p></a>
+                </div>
+                <div class="scoreBox">
+                  <h1 id="hScore"><%=gReviews[i].score[4]%></h1>
+                </div>
+
+              </div>
+            <% } %>
 
           </main>
 
@@ -78,13 +114,13 @@
     <footer>…</footer>
   </body>
   <script>
-    $('#gFilter').click(function () {
-      $('.mLineUp').removeClass('on').addClass('off');
-      $('.gLineUp').removeClass('off').addClass('on');
-    });
     $('#mFilter').click(function () {
-      $('.gLineUp').removeClass('on').addClass('off');
-      $('.mLineUp').removeClass('off').addClass('on');
+      $('#gLineUp').removeClass('on').addClass('off');
+      $('#mLineUp').removeClass('off').addClass('on');
+    });
+    $('#gFilter').click(function () {
+      $('#gLineUp').removeClass('off').addClass('on');
+      $('#mLineUp').removeClass('on').addClass('off');
     });
 </script>
 </html>

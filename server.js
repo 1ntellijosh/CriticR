@@ -27,17 +27,31 @@ const Users = require('./models/users.js')
 //ROUTES
 app.get('/', (req, res) => {
 
-  let mReviews = Reviews.find({type: "movie"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, revs){
-    console.log(revs);
+  Reviews.find({type: "movie"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, revs){
+    let mRevs = revs;
+    console.log(mRevs);
+
+    Reviews.find({type: "game"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, revs){
+      let gRevs = revs;
+      console.log(gRevs);
+
+      res.render('index.ejs', {
+        user: req.session.currentUser,
+        mReviews: mRevs,
+        gReviews: gRevs
+      });
+    });
+
   });
-  let gReviews = Reviews.find({type: "game"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, revs){
-    console.log(revs);
-  });
-  res.render('index.ejs', {
-    user: req.session.currentUser,
-    mReviews: mReviews,
-    gReviews: gReviews
-  });
+  // Reviews.find({type: "game"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, revs){
+  //   console.log('done');
+  // });
+  //
+  // res.render('index.ejs', {
+  //   user: req.session.currentUser,
+  //   // mReviews: mRevs,
+  //   // gReviews: gRevs
+  // });
 })
 
 app.get('/invalid', (req, res) => {
