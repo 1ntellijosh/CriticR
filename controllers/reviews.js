@@ -12,10 +12,13 @@ router.post('/:type/:id/:name', (req, res) => {
   review.type = req.params.type;
   review.author = req.params.id;
   review.username = req.params.name;
+  review.rtitle = req.body.rtitle;
   review.title = req.body.title;
   review.pub = req.body.pub;
   review.genre = req.body.genre;
-  review.article = req.body.article;
+  let art = req.body.article;
+  art = art.replace(/(?:\\[rn]|[\r\n])/g,"<br>");
+  review.article = art;
   review.images = req.body.img.split(', ');
   let score = [];
   let vis = parseInt(req.body.vis)
@@ -47,6 +50,19 @@ router.post('/:type/:id/:name', (req, res) => {
     })
     }
   });
+})
+
+router.get('/review/:id', (req, res) => {
+  Reviews.findOne({_id:req.params.id}, (err, foundReview) => {
+    if (err){
+      console.log(err);
+    } else {
+      res.render('./reviews/review.ejs', {
+      user: req.session.currentUser,
+      review: foundReview
+    })
+  }
+  })
 })
 
 router.get('/new', (req, res) => {

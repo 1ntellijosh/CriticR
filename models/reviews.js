@@ -6,6 +6,7 @@ const revSchema = new Schema({
   author: String,
   username: String,
   title: String,
+  rtitle: String,
   pub: String,
   genre: String,
   article: String,

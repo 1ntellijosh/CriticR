@@ -68,7 +68,7 @@
                     <p>Studio/Production:  <%=mReviews[i].pub%></p>
                     <p>Genre: <%=mReviews[i].genre%></p>
                     <p>Critic: <%=mReviews[i].username%></p>
-                    <a href="#"><p>Read</p></a>
+                    <a href="/reviews/review/<%=mReviews[i]._id%>"><p>Read</p></a>
                   </div>
                   <div class="scoreBox">
                     <h1 id="hScore"><%=mReviews[i].score[4]%></h1>
@@ -93,7 +93,7 @@
                   <p>Developer: <%=gReviews[i].pub%></p>
                   <p>Genre: <%=gReviews[i].genre%></p>
                   <p>Critic: <%=gReviews[i].username%></p>
-                  <a href="#"><p>Read</p></a>
+                  <a href="/reviews/review/<%=gReviews[i]._id%>"><p>Read</p></a>
                 </div>
                 <div class="scoreBox">
                   <h1 id="hScore"><%=gReviews[i].score[4]%></h1>

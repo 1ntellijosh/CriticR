@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CriticR</title>
+    <script
+       src="https://code.jquery.com/jquery-3.3.1.min.js"
+       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+       crossorigin="anonymous">
+    </script>
+ <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  </head>
+  <body class="HolyGrail">
+    <div class="header">
+      <!-- title //not used on main index page\\-->
+      <div class="header-title">
+        <a href="/"><h5>CriticR</h5></a>
+      </div>
+      <!-- navigation -->
+      <div class="header-nav">
+        <ul>
+          <%if(!user) { %>
+          <!-- add your link to the log in page here -->
+          <li>
+            <a href="/sessions/new">Log In</a>
+          </li>
+          <!-- add your link to create a user here -->
+          <li>
+            <a href="/users/new">Register to Review</a>
+          </li>
+          <% } else { %>
+          <li>
+              <a href="/reviews/new">Add Review</a>
+          </li>
+          <!-- log out -->
+          <li>
+            <form action="/sessions?_method=DELETE" method="POST">
+              <input type="submit" value="Log Off" />
+            </form>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+    <h1><%=review.title%> <%=review.type.charAt(0).toUpperCase() + review.type.slice(1)%> Review:</h1>
+    <div class="HolyGrail-body">
+
+      <div class="HolyGrail-content">
+        <div id="frontNav">
+          <a href="#" id="mFilter">More From This Critic</a>
+          <a href="/" id="gFilter">Back to Reviews</a>
+        </div>
+
+        <div id="revCascade">
+          <!-- image carousel -->
+          <div class="galContain">
+            <!-- previous button -->
+            <div class="carousel-button previous">
+              <h3><</h3>
+            </div>
+            <div class="carousel-container">
+              <!-- images -->
+              <div class="carousel-images">
+                <%for (let i = 0; i < review.images.length; i++) {  %>
+                  <a href=<%=review.images[i]%> >
+                  <img class="fade" alt="screenshot" src=<%=review.images[i]%>>
+                  </a>
+                <% } %>
+              </div>
+            </div>
+            <!-- next button -->
+            <div class="carousel-button next">
+              <h3>></h3>
+            </div>
+          </div>
+          <!-- review title/author -->
+          <h2><%=review.rtitle%></h2>
+          <h4>By: <%=review.username%></h4>
+          <!-- movie/game specs -->
+          <%if (review.type == 'movie') { %>
+            <div id="specLine">
+              <span><b>Studio/Production:</b> <%=review.pub%></span>
+              <span><b>Genre:</b> <%=review.genre%></span>
+              <span><b>Review by: </b> <%=review.username%></span>
+            </div>
+          <% } else { %>
+            <div id="specLine">
+              <span><b></b>Developer: <%=review.pub%></span>
+              <span><b></b>Genre: <%=review.genre%></span>
+              <span><b></b>Review by <%=review.username%></span>
+            </div>
+          <% } %>
+          <!-- review text -->
+          <article class="rArticle">
+            <%let pArr = review.article.split('<br><br><br><br>');
+            for (let i = 0; i < pArr.length; i++) { %>
+              <p>
+                <%=pArr[i]%>
+              </p>
+            <%}%>
+          </article>
+
+          <div class="rWind on">
+
+            <div class="sDetail">
+              <p>SFX/Cinematography: <span><%=review.score[0]%></span></p>
+              <p>Direction/Writing/Performances: <span><%=review.score[1]%></span></p>
+              <p>Sound: <span><%=review.score[2]%></span></p>
+              <p>Tilt: <span><%=review.score[3]%></span></p>
+            </div>
+            <div class="avBox">
+              <h1 id="hScore"><%=review.score[4]%></h1>
+            </div>
+
+          </div>
+
+        </div>
+        </div>
+    </div>
+    <footer>…</footer>
+  </body>
+  <script>
+      let currentImgIndex = 0;
+      const highestIndex = $('.carousel-images').children().length -1;
+
+      $('.next').on('click', () => {
+        $('.carousel-images').children().eq(currentImgIndex).css('display', 'none');
+        if(currentImgIndex < highestIndex) {
+           currentImgIndex ++
+          }
+        else {
+           currentImgIndex = 0
+          }
+        $('.carousel-images').children().eq(currentImgIndex).css('display', 'block')
+      })
+
+      $('.previous').on('click', () => {
+        $('.carousel-images').children().eq(currentImgIndex).css('display', 'none');
+        if(currentImgIndex > 0) {
+            currentImgIndex --
+          }
+        else {
+            currentImgIndex = highestIndex
+          }
+        $('.carousel-images').children().eq(currentImgIndex).css('display', 'block')
+      })
+  </script>
+</html>

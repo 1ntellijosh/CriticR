@@ -57,9 +57,10 @@
           <form class="movieRev on" action="/reviews/movie/<%=user._id%>/<%=user.username%>" method="POST">
             <fieldset class="">
               <legend>&nbsp;&nbsp;&nbsp; MOVIE REVIEW</legend>
-                <label for=""></label>
                 <label for="title">Title: </label>
                 <input id="title" type="text" name="title" />
+                <label for="rtitle">Review Title: </label>
+                <input id="rtitle" type="text" name="rtitle" />
                 <label for="pub">Studio/Production: </label>
                 <input id="pub" type="text" name="pub" />
                 <label for="genre">Genre: </label>
@@ -144,6 +145,8 @@
           <legend>&nbsp;&nbsp;&nbsp; GAME REVIEW</legend>
           <label for="title">Title: </label>
           <input id="title" type="text" name="title" />
+          <label for="rtitle">Review Title: </label>
+          <input id="rtitle" type="text" name="rtitle" />
           <label for="pub">Developer: </label>
           <input id="pub" type="text" name="pub" />
           <label id="genre" for="genre">Genre: </label>
@@ -159,6 +162,7 @@
             <option value="Indie">Indie</option>
             <option value="Platformer">Platformer</option>
             <option value="Puzzle">Puzzle</option>
+            <option value="Racing">RPG</option>
             <option value="RPG">RPG</option>
             <option value="Shooter">Shooter</option>
             <option value="Simulation">Simulation</option>
