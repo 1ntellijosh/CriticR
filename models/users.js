@@ -6,7 +6,12 @@ const userSchema = new Schema({
   password: {type: String, required: true},
   img: String,
   super: Boolean,
-  reviews: [String],
+  reviews: [{
+
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Reviews'
+
+  }],
   comments: [String]
 });
 

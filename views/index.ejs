@@ -80,6 +80,9 @@
                       <h4>Not Yet Reviewed</h4>
                     <% } else { %>
                     <%=movies[i].score%></h1>
+                    <div class="revCountIndicate">
+                      Out of <%=movies[i].reviews.length%> review(s)
+                    </div>
                     <% } %>
                     <a href="/reviews/new/<%=movies[i]._id%>">Review This Movie</a>
                   </div>
@@ -105,11 +108,14 @@
                   <a href="/media/<%=games[i]._id%>"><p>Check out Reviews</p></a>
                 </div>
                 <div class="scoreBox">
-                  <h1 id="hScore"><%if(!games[i].score) { %>
-                    <h1>N/A</h1>
+                  <%if(!games[i].score) { %>
+                    <h1 id="hScore">N/A</h1>
                     <h4>Not Yet Reviewed</h4>
                   <% } else { %>
-                  <%=games[i].score%></h1>
+                  <h1 id="hScore"><%=games[i].score%></h1>
+                  <div class="revCountIndicate">
+                    Out of <%=games[i].reviews.length%> review(s)
+                  </div>
                   <% } %>
                   <a href="/reviews/new/<%=games[i]._id%>">Review this Game</a>
                 </div>

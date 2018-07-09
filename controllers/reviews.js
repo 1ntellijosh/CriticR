@@ -32,17 +32,17 @@ router.post('/:type/:title/:id/:mId', (req, res) => {
   review.score = score;
   //add review object to the DATABASE
   let revId = '';
-  Reviews.create(review, (err, data) => {
+  Reviews.create(review, (err, madeReview) => {
     if(err){
       console.log(err)
     } else {
       // console.log(data)
-      revId = data._id;
-      Users.findOneAndUpdate({_id: data.author}, {$push: {reviews: revId}}, {new: true}, (err, data)=>{
+      let reviewObj = madeReview;
+      Users.findOneAndUpdate({_id: madeReview.author}, {$push: {reviews: reviewObj}}, {new: true}, (err, data)=>{
     if (err){
       console.log(err);
     } else {
-      Media.findOneAndUpdate({_id: req.params.mId}, {$push: {reviews: revId}}, {new: true}, (err, data) => {
+      Media.findOneAndUpdate({_id: req.params.mId}, {$push: {reviews: reviewObj}}, {new: true}, (err, data) => {
         if(err){
           console.log(err)
         } else {

@@ -8,7 +8,12 @@ const mediaSchema = new Schema({
   genre: String,
   images: [String],
   score: Number,
-  reviews: [String]
+  reviews: [{
+
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Reviews'
+
+}]
 }, {timestamps: true});
 
 const Media = mongoose.model('Media', mediaSchema);
