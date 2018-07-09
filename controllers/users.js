@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt');
 //pull database info
 const Users = require('../models/users.js');
 const Reviews = require('../models/reviews.js');
+const Media = require('../models/media.js');
 
 router.post('/', (req, res) => {
   req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));

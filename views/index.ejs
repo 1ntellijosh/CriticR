@@ -20,18 +20,23 @@
       <div class="header-nav">
         <ul>
           <%if(!user) { %>
-          <!-- add your link to the log in page here -->
-          <li>
-            <a href="/sessions/new">Log In</a>
-          </li>
-          <!-- add your link to create a user here -->
-          <li>
-            <a href="/users/new">Register to Review</a>
-          </li>
+            <!-- add your link to the log in page here -->
+            <li>
+              <a href="/sessions/new">Log In</a>
+            </li>
+            <!-- add your link to create a user here -->
+            <li>
+              <a href="/users/new">Register to Review</a>
+            </li>
           <% } else { %>
-          <li>
+            <li>
               <a href="/reviews/new">Add Review</a>
-          </li>
+            </li>
+          <%if (user.super == true) { %>
+            <li>
+                <a href="/media/new">Add Movie/Game</a>
+            </li>
+          <% } %>
           <!-- log out -->
           <li>
             <form action="/sessions?_method=DELETE" method="POST">
@@ -55,23 +60,28 @@
         <div id="lineAside">
           <main id="mLineUp" class="lineUps on">
 
-              <%for (let i = 0; i < mReviews.length; i++) { %>
+              <%for (let i = 0; i < movies.length; i++) { %>
                 <div class="viewWind on">
 
                   <div class="vIm">
                     <a href="#">
-                    <img src=<%=mReviews[i].images[0]%>>
+                    <img src=<%=movies[i].images[0]%>>
                     </a>
                   </div>
                   <div class="dIm">
-                    <p>Title: <%=mReviews[i].title%></p>
-                    <p>Studio/Production:  <%=mReviews[i].pub%></p>
-                    <p>Genre: <%=mReviews[i].genre%></p>
-                    <p>Critic: <%=mReviews[i].username%></p>
-                    <a href="/reviews/review/<%=mReviews[i]._id%>"><p>Read</p></a>
+                    <p>Title: <%=movies[i].title%></p>
+                    <p>Studio/Production:  <%=movies[i].pub%></p>
+                    <p>Genre: <%=movies[i].genre%></p>
+                    <a href="/media/<%=movies[i]._id%>"><p>Check Reviews</p></a>
                   </div>
                   <div class="scoreBox">
-                    <h1 id="hScore"><%=mReviews[i].score[4]%></h1>
+                    <h1 id="hScore"><%if(!movies[i].score) { %>
+                      <h1>N/A</h1>
+                      <h4>Not Yet Reviewed</h4>
+                    <% } else { %>
+                    <%=movies[i].score%></h1>
+                    <% } %>
+                    <a href="/reviews/new/<%=movies[i]._id%>">Review This Movie</a>
                   </div>
 
                 </div>
@@ -80,23 +90,28 @@
           </main>
           <main id="gLineUp" class="lineUps off">
 
-            <%for (let i = 0; i < gReviews.length; i++) { %>
+            <%for (let i = 0; i < games.length; i++) { %>
               <div class="viewWind on">
 
                 <div class="vIm">
                   <a href="#">
-                  <img src=<%=gReviews[i].images[0]%>>
+                  <img src=<%=games[i].images[0]%>>
                   </a>
                 </div>
                 <div class="dIm">
-                  <p>Title: <%=gReviews[i].title%></p>
-                  <p>Developer: <%=gReviews[i].pub%></p>
-                  <p>Genre: <%=gReviews[i].genre%></p>
-                  <p>Critic: <%=gReviews[i].username%></p>
-                  <a href="/reviews/review/<%=gReviews[i]._id%>"><p>Read</p></a>
+                  <p>Title: <%=games[i].title%></p>
+                  <p>Developer: <%=games[i].pub%></p>
+                  <p>Genre: <%=games[i].genre%></p>
+                  <a href="/media/<%=games[i]._id%>"><p>Check out Reviews</p></a>
                 </div>
                 <div class="scoreBox">
-                  <h1 id="hScore"><%=gReviews[i].score[4]%></h1>
+                  <h1 id="hScore"><%if(!games[i].score) { %>
+                    <h1>N/A</h1>
+                    <h4>Not Yet Reviewed</h4>
+                  <% } else { %>
+                  <%=games[i].score%></h1>
+                  <% } %>
+                  <a href="/reviews/new/<%=games[i]._id%>">Review this Game</a>
                 </div>
 
               </div>

@@ -22,36 +22,29 @@ app.use(session({
 
 //pull data for index page
 const Reviews = require('./models/reviews.js');
-const Users = require('./models/users.js')
+const Users = require('./models/users.js');
+const Media = require('./models/media.js');
 
 //ROUTES
 app.get('/', (req, res) => {
 
-  Reviews.find({type: "movie"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, revs){
-    let mRevs = revs;
-    console.log(mRevs);
+  Media.find({type: "movie"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, data){
+  let movs = data;
+  // console.log(movs);
 
-    Reviews.find({type: "game"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, revs){
-      let gRevs = revs;
-      console.log(gRevs);
+  Media.find({type: "game"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, data){
+    let gams = data;
+    // console.log(gams);
 
-      res.render('index.ejs', {
-        user: req.session.currentUser,
-        mReviews: mRevs,
-        gReviews: gRevs
-      });
+    res.render('index.ejs', {
+      user: req.session.currentUser,
+      movies: movs,
+      games: gams
     });
-
   });
-  // Reviews.find({type: "game"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, revs){
-  //   console.log('done');
-  // });
-  //
-  // res.render('index.ejs', {
-  //   user: req.session.currentUser,
-  //   // mReviews: mRevs,
-  //   // gReviews: gRevs
-  // });
+
+});
+
 })
 
 app.get('/invalid', (req, res) => {
@@ -61,15 +54,22 @@ app.get('/invalid', (req, res) => {
 })
 
 //delete user database
-// app.get('/deleteusers', (req, res) => {
-//   Users.remove({}, (err, data) => {
-//     res.redirect('/');
-//   });
-// })
+app.get('/deleteusers', (req, res) => {
+  Users.remove({}, (err, data) => {
+    res.redirect('/');
+  });
+})
 
 //delete review database
 app.get('/deleterevs', (req, res) => {
   Reviews.remove({}, (err, data) => {
+    res.redirect('/');
+  });
+})
+
+//delete media database
+app.get('/deletemedia', (req, res) => {
+  Media.remove({}, (err, data) => {
     res.redirect('/');
   });
 })
@@ -81,6 +81,8 @@ const sessController = require('./controllers/sessions.js');
 app.use('/sessions', sessController);
 const revController = require('./controllers/reviews.js');
 app.use('/reviews', revController);
+const medController = require('./controllers/media.js');
+app.use('/media', medController);
 //APP LISTENER
 app.listen(PORT, () => {
   console.log('listening on port ' + PORT);
