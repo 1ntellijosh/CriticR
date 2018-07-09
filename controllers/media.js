@@ -35,9 +35,12 @@ router.get('/new', (req, res) => {
 
 router.get('/:id', (req, res) => {
   Media.findById(req.params.id, (err, foundMedia) => {
-    console.log(foundMedia);
-    //will use this foundMedia as the query for the reviews made
-  })
+    // console.log(foundMedia);
+    res.render('./media/title.ejs', {
+      media: foundMedia,
+      user: req.session.currentUser
+    });
+  }).populate('reviews');
 })
 
 module.exports = router;

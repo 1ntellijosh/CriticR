@@ -29,9 +29,6 @@
               <a href="/users/new">Register to Review</a>
             </li>
           <% } else { %>
-            <li>
-              <a href="/reviews/new">Add Review</a>
-            </li>
           <%if (user.super == true) { %>
             <li>
                 <a href="/media/new">Add Movie/Game</a>
@@ -65,7 +62,7 @@
 
                   <div class="vIm">
                     <a href="#">
-                    <img src=<%=movies[i].images[0]%>>
+                    <img src=<%=movies[i].poster%>>
                     </a>
                   </div>
                   <div class="dIm">
@@ -98,7 +95,7 @@
 
                 <div class="vIm">
                   <a href="#">
-                  <img src=<%=games[i].images[0]%>>
+                  <img src=<%=games[i].poster%>>
                   </a>
                 </div>
                 <div class="dIm">

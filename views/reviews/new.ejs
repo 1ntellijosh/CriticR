@@ -29,9 +29,6 @@
             <a href="/users/new">Register to Review</a>
           </li>
           <% } else { %>
-          <li>
-              <a href="/reviews/new">Add Review</a>
-          </li>
           <!-- log out -->
           <li>
             <form action="/sessions?_method=DELETE" method="POST">
@@ -54,7 +51,7 @@
 
         <div id="lineAside">
           <%if (media.type == 'movie') { %>
-            <form class="movieRev" action="/reviews/movie/<%=media.title%>/<%=user._id%>/<%=media._id%>" method="POST">
+            <form class="movieRev" action="/reviews/movie/<%=media.title%>/<%=user.username%>/<%=user._id%>/<%=media._id%>" method="POST">
               <fieldset class="">
                 <legend>&nbsp;&nbsp;&nbsp; MOVIE REVIEW: <%=media.title%></legend>
                   <label for="rtitle">Review Title: </label>
@@ -121,7 +118,7 @@
             </form>
           <% } else { %>
 
-            <form class="gameRev" action="/reviews/game/<%=media.title%>/<%=user._id%>/<%=media._id%>" method="POST">
+            <form class="gameRev" action="/reviews/game/<%=media.title%>/<%=user.username%>/<%=user._id%>/<%=media._id%>" method="POST">
               <fieldset class="">
                 <legend>&nbsp;&nbsp;&nbsp; GAME REVIEW: <%=media.title%></legend>
                 <label for="rtitle">Review Title: </label>

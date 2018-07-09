@@ -6,6 +6,7 @@ const mediaSchema = new Schema({
   title: String,
   pub: String,
   genre: String,
+  poster: String,
   images: [String],
   score: Number,
   reviews: [{

@@ -29,9 +29,6 @@
             <a href="/users/new">Register to Review</a>
           </li>
           <% } else { %>
-          <li>
-              <a href="/reviews/new">Add Review</a>
-          </li>
           <!-- log out -->
           <li>
             <form action="/sessions?_method=DELETE" method="POST">
@@ -76,6 +73,8 @@
                   <option value="Thriller">Thriller</option>
                   <option value="Western">Western</option>
                 </select>
+                <label for="pimg">Title Cover: </label>
+                <input id="pimg" type="text" name="poster" placeholder="Image link"/>
                 <label for="img">Images: </label>
                 <input id="img" type="text" name="img" placeholder="Please add each image link with a \',\' between them." />
                 <input type="submit" value="Submit New Media" />
@@ -109,6 +108,8 @@
             <option value="Strategy/RTS">Strategy/RTS</option>
             <option value="Survival Horror">Survival Horror</option>
           </select>
+          <label for="pimg">Title Cover: </label>
+          <input id="pimg" type="text" name="poster" placeholder="Image link" />
           <label for="img">Images: </label>
           <input id="img" type="text" name="img" placeholder="Please add each image link with a \',\' between them." />
           <input type="submit" value="Submit New Media" />

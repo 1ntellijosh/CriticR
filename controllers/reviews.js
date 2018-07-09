@@ -7,7 +7,7 @@ const Users = require('../models/users.js');
 const Reviews = require('../models/reviews.js');
 const Media = require('../models/media.js');
 
-router.post('/:type/:title/:id/:mId', (req, res) => {
+router.post('/:type/:title/:sn/:id/:mId', (req, res) => {
   //make a review object for database
   let review = {};
   review.type = req.params.type;
@@ -15,6 +15,7 @@ router.post('/:type/:title/:id/:mId', (req, res) => {
   review.media = req.params.mId;
   review.rtitle = req.body.rtitle;
   review.title = req.params.title;
+  review.username = req.params.sn;
   let art = req.body.article;
   art = art.replace(/(?:\\[rn]|[\r\n])/g,"<br>");
   review.article = art;
@@ -77,9 +78,13 @@ router.get('/review/:id', (req, res) => {
     if (err){
       console.log(err);
     } else {
+    let rev = foundReview;
+    Media.findOne({_id: rev.media}, (err, foundMedia) => {
       res.render('./reviews/review.ejs', {
       user: req.session.currentUser,
-      review: foundReview
+      review: rev,
+      media: foundMedia
+    })
     })
   }
   })

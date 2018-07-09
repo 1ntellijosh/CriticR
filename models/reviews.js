@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const revSchema = new Schema({
   author: String,//id of the user
+  username: String,
   media: String,///id of the movie/game
   type: String,
   title: String,

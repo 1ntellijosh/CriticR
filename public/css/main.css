@@ -27,6 +27,7 @@ ul {
   width:90%;
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
 }
 #frontNav {
   width: 96%;
@@ -70,13 +71,86 @@ ul {
   width:24%;
   background: lightgray;
 }
+/* movie/game page */
+.mediaWind {
+  width: 88%;
+  margin: 20px auto;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding:15px;
+  min-height: 150px;
+  background: lightgray;
+}
+.rollout {
+  width:78%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.revSum {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.detSum {
+  width: 80%;
+  text-align: left;
+}
+.scoSum {
+  border-left: 1px solid lightgray;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* review page cascade */
 #revCascade {
   width:86.5%;
   margin: 0 auto;
   display:flex;
   flex-direction: column;
-  justify-content: center;
+}
+#reviewHead {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+}
+#reviewHeadPoster {
+
+}
+.chartHolder {
+  width: 450px;
+  display: flex;
+  flex-direction: row;
+}
+.chdets {
+  line-height: 20px;
+  text-align: left;
+}
+.chart {
+  width: 225;
+  border-right: 2px solid steelblue;
+}
+.chartDiv {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+  max-height: 12px;
+  min-height: 12px;
+}
+#reviewHeadDetails {
+  display: flex;
+  text-align: left;
+  align-items: center;
 }
 /* image carousel */
 .galContain {
@@ -152,7 +226,7 @@ ul {
 #specLine {
   margin: 10px auto;
   padding: 10px;
-  width: 60%;
+  width: 45%;
   display: flex;
   justify-content: space-between;
 }
@@ -174,6 +248,7 @@ ul {
   min-height: 150px;
   background: lightgray;
 }
+
 /* hide movies/games on filter */
 .on {
   display: flex;

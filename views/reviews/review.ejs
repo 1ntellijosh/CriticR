@@ -29,9 +29,6 @@
             <a href="/users/new">Register to Review</a>
           </li>
           <% } else { %>
-          <li>
-              <a href="/reviews/new">Add Review</a>
-          </li>
           <!-- log out -->
           <li>
             <form action="/sessions?_method=DELETE" method="POST">
@@ -42,54 +39,48 @@
         </ul>
       </div>
     </div>
-    <h1><%=review.title%> <%=review.type.charAt(0).toUpperCase() + review.type.slice(1)%> Review:</h1>
+    <h3><%=review.type.charAt(0).toUpperCase() + review.type.slice(1)%> Review</h3>
+    <h1><%=review.title%></h1>
+    <!-- movie/game specs -->
+    <%if (review.type == 'movie') { %>
+      <div id="specLine">
+        <span><b>Studio/Production:</b> <%=review.pub%></span>
+        <span><b>Genre:</b> <%=review.genre%></span>
+        <span><b>Review by: </b> <%=review.username%></span>
+      </div>
+    <% } else { %>
+      <div id="specLine">
+        <span><b></b>Developer: <%=media.pub%></span>
+        <span><b></b>Genre: <%=media.genre%></span>
+        <span><b></b>Total Reviews:  <%=media.reviews.length%></span>
+      </div>
+    <% } %>
     <div class="HolyGrail-body">
 
       <div class="HolyGrail-content">
         <div id="frontNav">
           <a href="#" id="mFilter">More From This Critic</a>
-          <a href="/" id="gFilter">Back to Reviews</a>
+          <a href="/media/<%=media._id%>" id="gFilter">Back to More <%=media.title%> Reviews</a>
         </div>
 
         <div id="revCascade">
-          <!-- image carousel -->
-          <div class="galContain">
-            <!-- previous button -->
-            <div class="carousel-button previous">
-              <h3><</h3>
-            </div>
-            <div class="carousel-container">
-              <!-- images -->
-              <div class="carousel-images">
-                <%for (let i = 0; i < review.images.length; i++) {  %>
-                  <a href=<%=review.images[i]%> >
-                  <img class="fade" alt="screenshot" src=<%=review.images[i]%>>
-                  </a>
-                <% } %>
+          <div id="reviewHead">
+              <div id="reviewHeadPoster">
+                <img src="<%=media.poster%>"/>
               </div>
-            </div>
-            <!-- next button -->
-            <div class="carousel-button next">
-              <h3>></h3>
-            </div>
+              <div id="reviewHeadDetails">
+                <div>
+                  <!-- review title/author -->
+                  <h2><%=review.rtitle%></h2>
+                  <h4>By: <%=review.username%></h4>
+                  <h4><% let date = new Date(review.createdAt) %>
+                  <%=(date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear()%></h4>
+                </div>
+
+              </div>
           </div>
-          <!-- review title/author -->
-          <h2><%=review.rtitle%></h2>
-          <h4>By: <%=review.username%></h4>
-          <!-- movie/game specs -->
-          <%if (review.type == 'movie') { %>
-            <div id="specLine">
-              <span><b>Studio/Production:</b> <%=review.pub%></span>
-              <span><b>Genre:</b> <%=review.genre%></span>
-              <span><b>Review by: </b> <%=review.username%></span>
-            </div>
-          <% } else { %>
-            <div id="specLine">
-              <span><b></b>Developer: <%=review.pub%></span>
-              <span><b></b>Genre: <%=review.genre%></span>
-              <span><b></b>Review by <%=review.username%></span>
-            </div>
-          <% } %>
+
+
           <!-- review text -->
           <article class="rArticle">
             <%let pArr = review.article.split('<br><br><br><br>');
@@ -103,10 +94,37 @@
           <div class="rWind on">
 
             <div class="sDetail">
-              <p>SFX/Cinematography: <span><%=review.score[0]%></span></p>
-              <p>Direction/Writing/Performances: <span><%=review.score[1]%></span></p>
-              <p>Sound: <span><%=review.score[2]%></span></p>
-              <p>Tilt: <span><%=review.score[3]%></span></p>
+              <%if(review.type == 'movie') { %>
+                <div class="chartHolder">
+                  <div class="chdets">
+                    SFX/Cinematography: <br />
+                    Direction/Writing/Performances: <br />
+                    Sound: <br />
+                    Tilt: <br />
+                  </div>
+                  <div class="chart">
+                    <div class="chartDiv" style="width: <%=review.score[0]*20%>px;"><%=review.score[0]%></div>
+                    <div class="chartDiv"style="width: <%=(review.score[1]*20)%>px;"><%=review.score[1]%></div>
+                    <div class="chartDiv"style="width: <%=review.score[2]*20%>px;"><%=review.score[2]%></div>
+                    <div class="chartDiv"style="width: <%=review.score[3]*20%>px;"><%=review.score[3]%></div>
+                  </div>
+                </div>
+              <% } else { %>
+                <div class="chartHolder">
+                  <div class="chdets">
+                    SFX/Cinematography: <br />
+                    Direction/Writing/Performances: <br />
+                    Sound: <br />
+                    Tilt: <br />
+                  </div>
+                  <div class="chart">
+                    <div class="chartDiv" style="width: <%=review.score[0]*20%>px;"><%=review.score[0]%></div>
+                    <div class="chartDiv"style="width: <%=(review.score[1]*20)%>px;"><%=review.score[1]%></div>
+                    <div class="chartDiv"style="width: <%=review.score[2]*20%>px;"><%=review.score[2]%></div>
+                    <div class="chartDiv"style="width: <%=review.score[3]*20%>px;"><%=review.score[3]%></div>
+                  </div>
+                </div>
+              <% } %>
             </div>
             <div class="avBox">
               <h1 id="hScore"><%=review.score[4]%></h1>
@@ -119,30 +137,5 @@
     </div>
     <footer>…</footer>
   </body>
-  <script>
-      let currentImgIndex = 0;
-      const highestIndex = $('.carousel-images').children().length -1;
 
-      $('.next').on('click', () => {
-        $('.carousel-images').children().eq(currentImgIndex).css('display', 'none');
-        if(currentImgIndex < highestIndex) {
-           currentImgIndex ++
-          }
-        else {
-           currentImgIndex = 0
-          }
-        $('.carousel-images').children().eq(currentImgIndex).css('display', 'block')
-      })
-
-      $('.previous').on('click', () => {
-        $('.carousel-images').children().eq(currentImgIndex).css('display', 'none');
-        if(currentImgIndex > 0) {
-            currentImgIndex --
-          }
-        else {
-            currentImgIndex = highestIndex
-          }
-        $('.carousel-images').children().eq(currentImgIndex).css('display', 'block')
-      })
-  </script>
 </html>
