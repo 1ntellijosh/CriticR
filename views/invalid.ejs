@@ -35,8 +35,13 @@
           </li>
           <% } else { %>
           <li>
-              <a href="/review/new">Add Review</a>
+            <a href="/users/user/<%=user._id%>">View My Reviews</a>
           </li>
+          <%if (user.super == true) { %>
+            <li>
+                <a href="/media/new">Add Movie/Game</a>
+            </li>
+          <% } %>
           <!-- log out -->
           <li>
             <form action="/sessions?_method=DELETE" method="POST">

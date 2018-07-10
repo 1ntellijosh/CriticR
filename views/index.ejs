@@ -34,6 +34,9 @@
                 <a href="/media/new">Add Movie/Game</a>
             </li>
           <% } %>
+          <li>
+            <a href="/users/user/<%=user._id%>">View My Reviews</a>
+          </li>
           <!-- log out -->
           <li>
             <form action="/sessions?_method=DELETE" method="POST">
@@ -76,7 +79,7 @@
                       <h1>N/A</h1>
                       <h4>Not Yet Reviewed</h4>
                     <% } else { %>
-                    <%=movies[i].score%></h1>
+                    <%=movies[i].score.toFixed(2)%></h1>
                     <div class="revCountIndicate">
                       Out of <%=movies[i].reviews.length%> review(s)
                     </div>
@@ -109,7 +112,7 @@
                     <h1 id="hScore">N/A</h1>
                     <h4>Not Yet Reviewed</h4>
                   <% } else { %>
-                  <h1 id="hScore"><%=games[i].score%></h1>
+                  <h1 id="hScore"><%=games[i].score.toFixed(2)%></h1>
                   <div class="revCountIndicate">
                     Out of <%=games[i].reviews.length%> review(s)
                   </div>

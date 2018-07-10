@@ -13,7 +13,7 @@ const userSchema = new Schema({
 
   }],
   comments: [String]
-});
+}, {timestamps: true});
 
 const Users = mongoose.model('Users', userSchema);
 

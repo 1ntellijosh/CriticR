@@ -17,8 +17,6 @@ router.post('/:type', (req, res) => {
   })
 })
 
-
-
 router.get('/new', (req, res) => {
   if(!req.session.currentUser) {
     res.redirect('/');
@@ -31,6 +29,36 @@ router.get('/new', (req, res) => {
       user: req.session.currentUser
     });
   }
+})
+
+router.get('/:id/edit', (req, res) => {
+  if(!req.session.currentUser) {
+    redirect('/');
+  }
+  else if (!req.session.currentUser.super == true) {
+    redirect('/');
+  }
+  else {
+    Media.findOne({_id: req.params.id}, (err, foundMedia) => {
+      res.render('./media/edit.ejs', {
+        user: req.session.currentUser,
+        media: foundMedia
+      })
+    })
+  }
+})
+
+router.put('/:id', (req, res) => {
+  let imgArray = req.body.img.split(', ');
+  Media.findByIdAndUpdate(req.params.id, {title: req.body.title, pub: req.body.pub, genre: req.body.genre, poster: req.body.poster, images: imgArray}, {new: true},(err, data)=> {
+
+    Reviews.update({media: req.params.id}, {title: req.body.title, poster: req.body.poster}, {multi: true},
+    function(err, num) {
+        res.redirect('/media/' + req.params.id);
+    }
+);
+
+  })
 })
 
 router.get('/:id', (req, res) => {

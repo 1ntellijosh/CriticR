@@ -68,17 +68,15 @@
 
         <div id="lineAside">
           <%if (review.type == 'movie') { %>
-            <form class="movieRev" action="/reviews/movie/<%=review.title%>/<%=posterPasser%>/<%=review.username%>/<%=review.author%>/<%=review.media%>" method="PUT">
+            <form class="movieRev" action="/reviews/movie/<%=review.title%>/<%=posterPasser%>/<%=review.username%>/<%=review.author%>/<%=review.media%>/<%=review._id%>/edit?_method=PUT" method="POST">
               <fieldset class="">
                 <legend>&nbsp;&nbsp;&nbsp; MOVIE REVIEW: <%=review.title%></legend>
                   <label for="rtitle">Review Title: </label>
-                  <input id="rtitle" type="text" name="rtitle" placeholder="review.rtitle"/>
+                  <input id="rtitle" type="text" name="rtitle" value="<%=review.rtitle%>"/>
                   <label for="article">Review: </label>
                   <textarea name="article" id="article" value=""><%let pArr = review.article.split('<br><br><br><br>');
                   for (let i = 0; i < pArr.length; i++) { %>
-                    <p>
                       <%=pArr[i]%>
-                    </p>
                   <%}%></textarea>
                   <!-- //score numbers\\ -->
                   <div id="scoreBox">
@@ -140,17 +138,15 @@
             </form>
           <% } else { %>
 
-            <form class="gameRev" action="/reviews/game/<%=review.title%>/<%=posterPasser%>/<%=review.username%>/<%=review.author%>/<%=review.media%>" method="PUT">
+            <form class="gameRev" action="/reviews/game/<%=review.title%>/<%=posterPasser%>/<%=review.username%>/<%=review.author%>/<%=review.media%>/<%=review._id%>/edit?_method=PUT" method="POST">
               <fieldset class="">
-                <legend>&nbsp;&nbsp;&nbsp; GAME REVIEW: <%=media.title%></legend>
+                <legend>&nbsp;&nbsp;&nbsp; GAME REVIEW: <%=review.title%></legend>
                 <label for="rtitle">Review Title: </label>
-                <input id="rtitle" type="text" name="rtitle" placeholder="review.rtitle"/>
+                <input id="rtitle" type="text" name="rtitle" value="<%=review.rtitle%>"/>
                 <label for="article">Review: </label>
                 <textarea name="article" id="article" value=""><%let pArr = review.article.split('<br><br><br><br>');
                 for (let i = 0; i < pArr.length; i++) { %>
-                  <p>
                     <%=pArr[i]%>
-                  </p>
                 <%}%></textarea>
                 <div id="scoreBox">
                   <!-- //score numbers\\ -->

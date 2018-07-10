@@ -83,6 +83,14 @@
                   <h4>By: <%=review.username%></h4>
                   <h4><% let date = new Date(review.createdAt) %>
                   <%=(date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear()%></h4>
+                  <% if (user) {
+                  if (user.username == review.username || user.super == true) { %>
+                    <a href="/reviews/review/<%=review.id%>/edit"><h4>Edit Review</h4></a>
+                  <% } %>
+                  <%if(user.super == true) { %>
+                    <!-- need to change to a form whe you get to this -->
+                    <button>Delete</button>
+                  <% } } %>
                 </div>
 
               </div>

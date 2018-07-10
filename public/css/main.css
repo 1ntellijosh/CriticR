@@ -134,7 +134,8 @@ ul {
   text-align: left;
 }
 .chart {
-  width: 225;
+  width: 225px;
+  min-width:225px;
   border-right: 2px solid steelblue;
 }
 .chartDiv {
@@ -248,7 +249,31 @@ ul {
   min-height: 150px;
   background: lightgray;
 }
-
+/* user pages */
+#uSpecLine {
+  margin: 10px auto;
+  padding: 10px;
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+.uDetSum {
+  width: 60%;
+  text-align: left;
+}
+.uScoSum {
+  border-left: 1px solid lightgray;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.uVIm {
+  width:20%;
+}
+.uVIm img {
+  width:100%;
+}
 /* hide movies/games on filter */
 .on {
   display: flex;

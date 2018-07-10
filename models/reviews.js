@@ -7,6 +7,7 @@ const revSchema = new Schema({
   media: String,///id of the movie/game
   type: String,
   title: String,
+  poster: String,
   rtitle: String,
   article: String,
   score: [Number],

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CriticR</title>
+    <script
+       src="https://code.jquery.com/jquery-3.3.1.min.js"
+       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+       crossorigin="anonymous">
+    </script>
+ <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  </head>
+  <body class="HolyGrail">
+    <div class="header">
+      <!-- title //not used on main index page\\-->
+      <div class="header-title">
+        <a href="/"><h5>CriticR</h5></a>
+      </div>
+      <!-- navigation -->
+      <div class="header-nav">
+        <ul>
+          <%if(!currentUser) { %>
+          <!-- add your link to the log in page here -->
+          <li>
+            <a href="/sessions/new">Log In</a>
+          </li>
+          <!-- add your link to create a user here -->
+          <li>
+            <a href="/users/new">Register to Review</a>
+          </li>
+          <% } else { %>
+          <li>
+            <a href="/users/user/<%=currentUser._id%>">View My Reviews</a>
+          </li>
+          <%if (user.super == true) { %>
+            <li>
+                <a href="/media/new">Add Movie/Game</a>
+            </li>
+          <% } %>
+          <!-- log out -->
+          <li>
+            <form action="/sessions?_method=DELETE" method="POST">
+              <input type="submit" value="Log Off" />
+            </form>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+    <div class="HolyGrail-body">
+
+      <div class="HolyGrail-content">
+        <div id="revCascade">
+
+
+          <h2><%=user.username%>'s Reviews</h2>
+
+            <div id="uSpecLine">
+              <span><b>Critic since:</b> <% let date = new Date(user.createdAt) %>
+              <%=(date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear()%></span>
+              <span><b>Total Reviews:</b>  <%=user.reviews.length%>
+            </div>
+
+          <div id="frontNav">
+            <a href="#" id="mFilter">Movies</a>
+            <a href="#" id="gFilter">Games</a>
+          </div>
+
+          <div class="rollout">
+
+            <%for (let i = 0; i < user.reviews.length; i++) {
+              if (user.reviews[i].type == 'movie') { %>
+              <div class="revSum movie on">
+              <% } else { %>
+              <div class="revSum game off">
+              <% } %>
+
+                <div class="uVIm">
+                  <a href="/reviews/review/<%=user.reviews[i]._id%>">
+                  <img src=<%=user.reviews[i].poster%>>
+                  </a>
+                </div>
+
+                <div class="uDetSum">
+                  <h4><%=user.reviews[i].rtitle%></h4>
+                  <p class="smallGrays">
+                    By: <%=user.reviews[i].username%> &nbsp;|&nbsp;
+                    <% let date = new Date(user.reviews[i].createdAt) %>
+                    <%=(date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear()%>
+                  </p>
+                  <p class="pSum">
+                    <% let parArr = user.reviews[i].article.split('<br><br><br><br>');
+                    let firstPar = parArr[0];
+                    let parSlice = firstPar.slice(0, 175) %>
+                    <%=parSlice%>... &nbsp;<a href="/reviews/review/<%=user.reviews[i]._id%>">Read Full Review</a>
+                  </p>
+
+                </div>
+
+                <div class="uScoSum">
+                  <a href="/reviews/review/<%=user.reviews[i]._id%>"><h1><%=user.reviews[i].score[4].toFixed(2)%></h1></a>
+                </div>
+
+              </div>
+
+            <% } %>
+
+          </div>
+
+        </div>
+        </div>
+    </div>
+    <footer>…</footer>
+  </body>
+  <script>
+    $('#mFilter').click(function () {
+      $('.game').removeClass('on').addClass('off');
+      $('.movie').removeClass('off').addClass('on');
+    });
+    $('#gFilter').click(function () {
+      $('.game').removeClass('off').addClass('on');
+      $('.movie').removeClass('on').addClass('off');
+    });
+</script>
+</html>

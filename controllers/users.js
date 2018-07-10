@@ -17,6 +17,16 @@ router.post('/', (req, res) => {
   })
 })
 
+router.get('/user/:id', (req, res) => {
+  Users.findById(req.params.id, (err, foundUser) => {
+    console.log(foundUser);
+    res.render('./users/user.ejs', {
+      user: foundUser,
+      currentUser: req.session.currentUser
+    });
+  }).populate('reviews');
+})
+
 router.get('/new', (req, res) => {
   res.render('./users/new.ejs');
 })
