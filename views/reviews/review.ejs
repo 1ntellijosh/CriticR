@@ -29,6 +29,14 @@
             <a href="/users/new">Register to Review</a>
           </li>
           <% } else { %>
+          <%if (user.super == true) { %>
+            <li>
+                <a href="/media/new">Add Movie/Game</a>
+            </li>
+          <% } %>
+          <li>
+            <a href="/users/user/<%=user._id%>">View My Reviews</a>
+          </li>
           <!-- log out -->
           <li>
             <form action="/sessions?_method=DELETE" method="POST">
@@ -44,23 +52,23 @@
     <!-- movie/game specs -->
     <%if (review.type == 'movie') { %>
       <div id="specLine">
-        <span><b>Studio/Production:</b> <%=review.pub%></span>
-        <span><b>Genre:</b> <%=review.genre%></span>
-        <span><b>Review by: </b> <%=review.username%></span>
+        <span><b>Studio/Production:</b> <%=media.pub%></span>
+        <span><b>Genre:</b> <%=media.genre%></span>
+        <span><b></b>Cumulative Score:  <%=media.score.toFixed(2)%></span>
       </div>
     <% } else { %>
       <div id="specLine">
         <span><b></b>Developer: <%=media.pub%></span>
         <span><b></b>Genre: <%=media.genre%></span>
-        <span><b></b>Total Reviews:  <%=media.reviews.length%></span>
+        <span><b></b>Cumulative Score:  <%=media.score.toFixed(2)%></span>
       </div>
     <% } %>
     <div class="HolyGrail-body">
 
       <div class="HolyGrail-content">
         <div id="frontNav">
-          <a href="#" id="mFilter">More From This Critic</a>
-          <a href="/media/<%=media._id%>" id="gFilter">Back to More <%=media.title%> Reviews</a>
+          <a href="/users/user/<%=review.author%>" id="mFilter">More From This Critic</a>
+          <a href="/media/<%=media._id%>" id="gFilter">More <%=media.title%> Reviews</a>
         </div>
 
         <div id="revCascade">
@@ -127,7 +135,7 @@
               <% } %>
             </div>
             <div class="avBox">
-              <h1 id="hScore"><%=review.score[4]%></h1>
+              <h1 id="hScore"><%=review.score[4].toFixed(2)%></h1>
             </div>
 
           </div>
