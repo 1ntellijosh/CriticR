@@ -40,24 +40,22 @@
                 <a href="/users/super">+ MODERATOR</a>
             </li>
           <% } %>
-          <!-- log out -->
-          <li>
-            <form action="/sessions?_method=DELETE" method="POST">
-              <input type="submit" value="Log Off" />
-            </form>
-          </li>
-          <% } %>
         </ul>
+        <form action="/sessions?_method=DELETE" method="POST">
+          <input id="logOffBtn" type="submit" value="Log Off" />
+        </form>
+        <!-- log out -->
+        <% } %>
       </div>
     </div>
-    <h1>CriticR</h1>
-    <h3>Reviews By The People, For The People</h3>
+    <h1 id="mainLogo">CriticR.</h1>
+    <h3 id="mainSub">Reviews By The People, For The People.</h3>
     <div class="HolyGrail-body">
 
       <div class="HolyGrail-content">
         <div id="frontNav">
-          <a href="#" id="mFilter">Movies</a>
-          <a href="#" id="gFilter">Games</a>
+          <a href="#" id="mFilter">Latest Movies</a>
+          <a href="#" id="gFilter">Latest Games</a>
         </div>
 
         <div id="lineAside">
@@ -65,34 +63,45 @@
 
               <%for (let i = 0; i < movies.length; i++) { %>
                 <div class="viewWind on">
-
-                  <div class="vIm">
-                    <a href="#">
-                    <img src=<%=movies[i].poster%>>
-                    </a>
-                  </div>
-                  <div class="dIm">
-                    <p>Title: <%=movies[i].title%></p>
-                    <p>Studio/Production:  <%=movies[i].pub%></p>
-                    <p>Genre: <%=movies[i].genre%></p>
-                    <a href="/media/<%=movies[i]._id%>"><p>Check Reviews</p></a>
-                  </div>
-                  <div class="scoreBox">
-                    <h1 id="hScore"><%if(!movies[i].reviews) { %>
-                      <h1>N/A</h1>
-                      <h4>Not Yet Reviewed</h4>
-                    <% } else {
-                      let sum = 0;
-                      for(let x = 0; x < movies[i].reviews.length; x++) {
-                        sum += movies[i].reviews[x].score[4];
-                      }
-                      let score = sum / movies[i].reviews.length; %>
-                    <%=score.toFixed(2)%></h1>
-                    <div class="revCountIndicate">
-                      Out of <%=movies[i].reviews.length%> review(s)
+                  <div id="lefterDiv">
+                    <div class="vIm">
+                      <a href="/media/<%=movies[i]._id%>">
+                      <img src=<%=movies[i].poster%>>
+                      </a>
                     </div>
-                    <% } %>
-                    <a href="/reviews/new/<%=movies[i]._id%>">Review This Movie</a>
+                    <div class="dIm">
+                      <div class="dImHolder">
+                        <p><b>Title:</b> <%=movies[i].title%></p>
+                        <p><b>Studio/Prod:</b>  <%=movies[i].pub%></p>
+                        <p><b>Genre:</b> <%=movies[i].genre%></p>
+                        <a href="/media/<%=movies[i]._id%>"><p>Check Reviews</p></a>
+                      </div>
+
+                    </div>
+
+                  </div>
+                    <div class="sOutBox">
+                      <div class="scoreBox">
+                      <%if(!movies[i].reviews) { %>
+                        <div class="scoreNumDiv">
+                          <a href="/reviews/new/<%=movies[i]._id%>">
+                            <h1 id="hScore">N/A</h1>
+                            <h4 id="hScore">Not Yet Reviewed</h4>
+                          </a>
+                        </div>
+                      <% } else {
+                        let sum = 0;
+                        for(let x = 0; x < movies[i].reviews.length; x++) {
+                          sum += movies[i].reviews[x].score[4];
+                        }
+                        let score = sum / movies[i].reviews.length; %>
+                      <a href="/media/<%=movies[i]._id%>"><h1 id="hScore"><%=score.toFixed(2)%></h1></a>
+                      <div class="revCountIndicate">
+                        Out of <%=movies[i].reviews.length%> review(s)
+                      </div>
+                      <% } %>
+                      <a href="/reviews/new/<%=movies[i]._id%>">Review This Movie</a>
+                    </div>
                   </div>
 
                 </div>
@@ -103,30 +112,45 @@
 
             <%for (let i = 0; i < games.length; i++) { %>
               <div class="viewWind on">
+                <div id="lefterDiv">
+                  <div class="vIm">
+                    <a href="/media/<%=games[i]._id%>">
+                    <img src=<%=games[i].poster%>>
+                    </a>
+                  </div>
+                  <div class="dIm">
+                    <div class="dImHolder">
+                      <p><b>Title:</b> <%=games[i].title%></p>
+                      <p><b>Developer:</b> <%=games[i].pub%></p>
+                      <p><b>Genre:</b> <%=games[i].genre%></p>
+                      <a href="/media/<%=games[i]._id%>"><p>Check out Reviews</p></a>
+                    </div>
+                  </div>
 
-                <div class="vIm">
-                  <a href="#">
-                  <img src=<%=games[i].poster%>>
-                  </a>
                 </div>
-                <div class="dIm">
-                  <p>Title: <%=games[i].title%></p>
-                  <p>Developer: <%=games[i].pub%></p>
-                  <p>Genre: <%=games[i].genre%></p>
-                  <a href="/media/<%=games[i]._id%>"><p>Check out Reviews</p></a>
-                </div>
-                <div class="scoreBox">
-                  <%if(!games[i].score) { %>
-                    <h1 id="hScore">N/A</h1>
-                    <h4>Not Yet Reviewed</h4>
-                  <% } else { %>
-                  <h1 id="hScore"><%=games[i].score.toFixed(2)%></h1>
+                <div class="sOutBox">
+                  <div class="scoreBox">
+                  <%if(!games[i].reviews) { %>
+                    <div class="scoreNumDiv">
+                      <a href="/reviews/new/<%=games[i]._id%>">
+                        <h1 id="hScore">N/A</h1>
+                        <h4 id="hScore">Not Yet Reviewed</h4>
+                      </a>
+                    </div>
+                  <% } else {
+                    let sum = 0;
+                    for(let x = 0; x < games[i].reviews.length; x++) {
+                      sum += games[i].reviews[x].score[4];
+                    }
+                    let score = sum / games[i].reviews.length; %>
+                  <a href="/media/<%=games[i]._id%>"><h1 id="hScore"><%=score.toFixed(2)%></h1></a>
                   <div class="revCountIndicate">
                     Out of <%=games[i].reviews.length%> review(s)
                   </div>
                   <% } %>
-                  <a href="/reviews/new/<%=games[i]._id%>">Review this Game</a>
+                  <a href="/reviews/new/<%=games[i]._id%>">Review This Game</a>
                 </div>
+              </div>
 
               </div>
             <% } %>
@@ -134,7 +158,14 @@
           </main>
 
           <aside class="HolyGrail-ads">
-            <a href="/reviews/new" id="newRevLink">+ --- Add Review</a>
+            <div id="rMenu">
+                  <a href="#">Search</a>
+                  <a href="#">About</a></li>
+                  <a href="#">Links</a>
+            </div>
+            <div id="ad">
+              <img src="https://i.imgur.com/i0WIwxg.jpg">
+            </div>
           </aside>
 
         </div>
