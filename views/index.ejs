@@ -82,12 +82,14 @@
                   </div>
                     <div class="sOutBox">
                       <div class="scoreBox">
-                      <%if(!movies[i].reviews) { %>
+                      <%if(movies[i].reviews.length ==0) { %>
                         <div class="scoreNumDiv">
                           <a href="/reviews/new/<%=movies[i]._id%>">
                             <h1 id="hScore">N/A</h1>
-                            <h4 id="hScore">Not Yet Reviewed</h4>
                           </a>
+                        </div>
+                        <div class="revCountIndicate">
+                          Not Yet Reviewed
                         </div>
                       <% } else {
                         let sum = 0;
