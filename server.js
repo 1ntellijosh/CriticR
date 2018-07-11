@@ -28,11 +28,11 @@ const Media = require('./models/media.js');
 //ROUTES
 app.get('/', (req, res) => {
 
-  Media.find({type: "movie"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, data){
+  Media.find({type: "movie"}).populate('reviews').sort({createdAt: 'desc'}).limit(10).exec(function(err, data){
   let movs = data;
   // console.log(movs);
 
-  Media.find({type: "game"}).sort({createdAt: 'desc'}).limit(10).exec(function(err, data){
+  Media.find({type: "game"}).populate('reviews').sort({createdAt: 'desc'}).limit(10).exec(function(err, data){
     let gams = data;
     // console.log(gams);
 

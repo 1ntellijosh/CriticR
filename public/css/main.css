@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Biryani|Passion+One|Paytone+One|Reenie+Beanie|Secular+One|Stylish|Yanone+Kaffeesatz|Exo+2|Special+Elite|Oswald|Oxygen|Open+Sans|Hind+Siliguri');
 
 .HolyGrail {
   display: flex;
@@ -5,23 +6,93 @@
   flex-direction: column;
   text-align: center;
   min-width: 1000px;
+  color: black;
+  font-family: arial;
+  background: black;
+}
+/* header */
+.header {
+  position: fixed;
+  top: 0;
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 60px;
+  min-height: 60px;
+  background: black;
+  color: red;
+}
+.header-title {
+  display: flex;
+  align-items: center;
+  margin-left: 4%;
+}
+.header-title h5 {
+  font-family: 'Passion One', cursive;
+  font-size: 30px;
+}
+.header-nav {
+  display: flex;
+  align-items: center;
+  margin-right: 5%;
+}
+.header li {
+  display: inline-block;
+  margin-right: 15px;
+}
+.header a {
+  font-size: 1.1em;
+}
+#logOffBtn {
+  background-color: black;
+  border: 1px solid black;
+  font-family: 'Oswald', cursive;
+  font-size: 1.1em;
+  color: lightgray;
+}
+a {
+  text-decoration: none;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.4em;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:visited {
+  color: inherit;
 }
 .HolyGrail-body {
   display: flex;
   flex: 1;
-  /* flex-direction: column; */
+  /* margin-top: 15px; */
   justify-content: center;
   text-align: center;
 }
 ul {
   list-style-type: none;
 }
+#mainLogo {
+  color: red;
+  font-family: 'Passion One', cursive;
+  margin-top:75px;
+  margin-bottom: 20px;
+  font-size: 5em;
+  /* font-weight: normal; */
+}
+#mainSub {
+  margin-top: 0px;
+  font-family: 'Special Elite', cursive;
+  color: lightgray;
+}
 #lineAside {
-  width:86.5%;
+  width:90%;
   margin: 0 auto;
   display:flex;
   flex-direction: row;
   justify-content: space-between;
+  /* background: rgb(40, 40, 40); */
+  height:100%;
 }
 .HolyGrail-content {
   width:90%;
@@ -34,44 +105,147 @@ ul {
   margin: 0 auto;
   text-align: center;
   display: flex;
+  flex-direction: row;
   justify-content: space-evenly;
 }
 #frontNav a {
-  display: inline-block;
   width: 100%;
-  padding: 8px;
+  padding: 18px 0px 18px 0px;
+  border-right:2px solid black;
   margin: 0;
-  background-color: gray;
+  background-color: lightgray;
+  background: linear-gradient(top, rgb(200, 200, 200) 0%,rgb(100, 100, 100) 100%);
+  background: -moz-linear-gradient(top, rgb(200, 200, 200) 0%,rgb(100, 100, 100) 100%);;
+  background: -webkit-linear-gradient(top, rgb(200, 200, 200) 0%,rgb(100, 100, 100) 100%);
+  font-family: 'Passion One', sans-serif;
+  font-weight: normal;
+  font-size: 1.3em;
 }
 #frontNav a:hover {
+  color: white;
   background-color: lightgray;
+  background: linear-gradient(top, rgb(165, 165, 165) 0%,rgb(55, 55, 55) 100%);
+  background: -moz-linear-gradient(top, rgb(165, 165, 165) 0%,rgb(55, 55, 55) 100%);;
+  background: -webkit-linear-gradient(top, rgb(165, 165, 165) 0%,rgb(55, 55, 55) 100%);
 }
 /* index page and review list */
 .lineUps {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
+  margin-top: 20px;
   width: 78%;
 }
 .viewWind {
-  width: 85%;
-  margin: 20px 0px 20px 0px;
-  border-radius: 12px;
+  width: 97%;
+  padding: 5px 0px 5px 0px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  padding:15px;
-  min-height: 150px;
-  background: lightgray;
+  align-items: center;
+  border-radius: 5px;
+  background: gray;
+  background-color: lightgray;
+  background: linear-gradient(top, rgb(210, 210, 210) 0%,rgb(100, 100, 100) 100%);
+  background: -moz-linear-gradient(top, rgb(210, 210, 210) 0%,rgb(100, 100, 100) 100%);;
+  background: -webkit-linear-gradient(top, rgb(210, 210, 210) 0%,rgb(100, 100, 100) 100%);
+  max-height: 230px;
+  min-height: 230px;
+}
+#lefterDiv {
+  display: flex;
+  flex-direction: row;
+  width:70%;
+}
+.vIm {
+  height: 220px;
+  width:140px;
+  padding: 0 4% 0 4%;
+}
+.vIm img {
+  margin-top: 3.5%;
+  height: 93%;
+  border: 0px solid #000000;
+-moz-box-shadow:
+  3px 4px 8px rgba(000,000,000,0.7);
+-webkit-box-shadow:
+  3px 4px 8px rgba(000,000,000,0.7);
+box-shadow:
+  3px 4px 8px rgba(000,000,000,0.7);
+  border-radius: 3px;
+}
+}
+.dImHolder {
+  margin-top: 30px;
+}
+.dIm {
+  text-align: left;
+  margin-left:8%;
+}
+.dim a {
+  display: block;
+  margin-left: 20px;
+}
+.sOutBox {
+  margin-right: 3%;
+  height:220px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.scoreBox {
+  height: 210px;
+}
+#hScore {
+  font-family: 'Oswald', cursive;
+  margin: 5px 0px 10px 0px;
+  padding:36px 0px 36px 0px;
+  background: rgb(40, 40, 40);
+  background-image: url(https://i.imgur.com/T9xy0mx.jpg);
+  border-radius: 5px;
+  color: gray;
+}
+#hScore:hover {
+  text-decoration: underline;
 }
 .HolyGrail-ads {
   margin: 20px 0px 20px 0px;
-  width:24%;
-  background: lightgray;
+  width:30%;
+  /* background: lightgray; */
+  display: flex;
+  flex-direction: column;
+}
+#rMenu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#rMenu a {
+  width:100%;
+  display: block;
+  padding: 18px 0px 18px 0px;
+  margin-bottom:20px;
+  border-radius: 3px;
+  background-color: gray;
+  background: linear-gradient(top, rgb(200, 200, 200) 0%,rgb(100, 100, 100) 100%);
+  background: -moz-linear-gradient(top, rgb(200, 200, 200) 0%,rgb(100, 100, 100) 100%);;
+  background: -webkit-linear-gradient(top, rgb(200, 200, 200) 0%,rgb(100, 100, 100) 100%);
+  font-family: 'Passion One', cursive;
+}
+#rMenu a:hover {
+  color: white;
+  background-color: lightgray;
+  background: linear-gradient(top, rgb(165, 165, 165) 0%,rgb(55, 55, 55) 100%);
+  background: -moz-linear-gradient(top, rgb(165, 165, 165) 0%,rgb(55, 55, 55) 100%);;
+  background: -webkit-linear-gradient(top, rgb(165, 165, 165) 0%,rgb(55, 55, 55) 100%);
+}
+#ad img {
+  width: 100%;
 }
 /* movie/game page */
+#bumper {
+  margin-top: 75px;
+}
 .mediaWind {
   width: 88%;
   margin: 20px auto;
@@ -83,7 +257,7 @@ ul {
   border-radius: 10px;
   padding:15px;
   min-height: 150px;
-  background: lightgray;
+  /* background: lightgray; */
 }
 .rollout {
   width:78%;

@@ -59,29 +59,26 @@ router.post('/:type/:title/:poster/:sn/:id/:mId', (req, res) => {
           console.log(err)
         } else {
           // console.log(data)
-      Media.findOne({_id: req.params.mId}, (err, data) => {
-          if (data.score === undefined) {
-            Media.findOneAndUpdate({_id: req.params.mId}, {score: review.score[4]}, {new: true}, (err, data) => {
-              res.redirect('/');
-            })
-          }//if there isn't a data.score
-          else {
-            let diff = data.reviews.length - 1;
-            let prod = diff * data.score;
-            let sum = prod + review.score[4];
-            let ave = sum / data.reviews.length;
-            Media.findOneAndUpdate({_id: req.params.mId}, {score: ave}, {new: true}, (err, data) => {
-              res.redirect('/');
-            })
-          }//else average out the score and apply
-      })
+          res.redirect('/media/'+req.params.mId);
         }
       })
-
     }
     })
     }
   });
+})
+
+router.delete('/:id/', (req, res) => {
+  Reviews.findByIdAndRemove(req.params.id, (err, data) => {
+  // console.log(data + 'removed from reviews');
+  Users.update( {}, { $pull: {reviews: [req.params.id] } }, (err, data) => {
+    // console.log(data + 'removed from users');
+    Media.update( {}, {$pull: {reviews: [req.params.id]}}, (err, data) => {
+      // console.log(data + 'removed from media');
+      res.redirect('/');
+    })
+  })
+  })
 })
 
 router.get('/review/:id/edit', (req, res) => {
@@ -138,24 +135,8 @@ router.put('/:type/:title/:poster/:sn/:id/:mId/:rId/edit', (req, res) => {
       console.log(err)
     } else {
       console.log(data);
-      Media.findOne({_id: req.params.mId}, (err, data) => {
-          if (data.score === undefined) {
-            Media.findOneAndUpdate({_id: req.params.mId}, {score: review.score[4]}, {new: true}, (err, data) => {
-              res.redirect('/');
-            })
-          }//if there isn't a data.score
-          else {
-            let diff = data.reviews.length - 1;
-            let prod = diff * data.score;
-            let sum = prod + review.score[4];
-            let ave = sum / data.reviews.length;
-            Media.findOneAndUpdate({_id: req.params.mId}, {score: ave}, {new: true}, (err, data) => {
-              res.redirect('/reviews/review/' + req.params.rId);
-            })
-          }//else average out the score and apply
-      })
-
-      }
+      res.redirect('/reviews/review/' + req.params.rId);
+    }
 
   });//end of review create
 })
@@ -173,7 +154,7 @@ router.get('/review/:id', (req, res) => {
       review: rev,
       media: foundMedia
     })
-    })
+  }).populate('reviews');
   }
   })
 })
@@ -184,13 +165,29 @@ router.get('/new/:id', (req, res) => {
   }
   //add checker for if user already reviewed title here
   else {
-    Media.findOne({_id: req.params.id}, (err, foundMedia) => {
-      res.render('./reviews/new.ejs', {
-        user: req.session.currentUser,
-        media: foundMedia
-      });
+    console.log(req.session.currentUser.username);
+    Reviews.find({$and: [{media: req.params.id}, {username: req.session.currentUser.username}]}, (err, foundReview) => {
+      console.log(foundReview);
+      let revId;
+      if(foundReview.length > 0) {
+        revId = foundReview[0]._id;
+              console.log(revId);
+      }
+      if(foundReview.length == 0) {
+        Media.findOne({_id: req.params.id}, (err, foundMedia) => {
+          res.render('./reviews/new.ejs', {
+            user: req.session.currentUser,
+            media: foundMedia
+          });
+        })
+      }
+      else {
+        res.redirect('/reviews/review/' + revId);
+      }
+
     })
-  }
+
+  }//end of else
 })
 
 module.exports = router;

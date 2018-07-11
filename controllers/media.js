@@ -57,7 +57,16 @@ router.put('/:id', (req, res) => {
         res.redirect('/media/' + req.params.id);
     }
 );
+  })
+})
 
+router.delete('/:id/', (req, res) => {
+  Media.findByIdAndRemove(req.params.id, (err, data) => {
+  // console.log(data + 'removed from reviews');
+  Reviews.remove({media: req.params.id}, (err, foundReviews) => {
+    console.log('these are the found arrays' + foundReviews);
+    res.redirect('/');  
+  })
   })
 })
 
