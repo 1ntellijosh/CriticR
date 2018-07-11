@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script
+       src="https://code.jquery.com/jquery-3.3.1.min.js"
+       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+       crossorigin="anonymous">
+    </script>
+ <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  </head>
+  <body class="HolyGrail">
+    <div class="header">
+      <!-- title //not used on main index page\\-->
+      <div class="header-title">
+        <a href="/"><h5>CriticR</h5></a>
+      </div>
+      <!-- navigation -->
+      <div class="header-nav">
+        <ul>
+          <li>
+            <a href="/sessions/new">Log In</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="HolyGrail-body">
+
+      <main class="HolyGrail-content">
+
+        <h1>Moderator Signup</h1>
+        <form action="/users/super" method="POST">
+        <fieldset class="">
+          <legend>&nbsp;&nbsp;&nbsp; Enter New username and Password: </legend>
+          <label for="username">Username: </label>
+          <input id="username" type="text" name="username" />
+          <label for="password">Password: </label>
+          <input id="password" type="password" name="password" />
+          <label for="img">Profile Picture: </label>
+          <input id="img" type="text" name="img" placeholder="Profile image link" />
+          <input type="submit" value="Register" />
+        </fieldset>
+        </form>
+
+      </main>
+
+      <aside class="HolyGrail-ads">…</aside>
+
+    </div>
+    <footer>…</footer>
+  </body>
+</html>

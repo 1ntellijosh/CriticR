@@ -29,14 +29,17 @@
               <a href="/users/new">Register to Review</a>
             </li>
           <% } else { %>
+            <li>
+              <a href="/users/user/<%=user._id%>">View My Reviews</a>
+            </li>
           <%if (user.super == true) { %>
             <li>
-                <a href="/media/new">Add Movie/Game</a>
+                <a href="/media/new">+ MOVIE/GAME</a>
+            </li>
+            <li>
+                <a href="/users/super">+ MODERATOR</a>
             </li>
           <% } %>
-          <li>
-            <a href="/users/user/<%=user._id%>">View My Reviews</a>
-          </li>
           <!-- log out -->
           <li>
             <form action="/sessions?_method=DELETE" method="POST">
@@ -75,11 +78,16 @@
                     <a href="/media/<%=movies[i]._id%>"><p>Check Reviews</p></a>
                   </div>
                   <div class="scoreBox">
-                    <h1 id="hScore"><%if(!movies[i].score) { %>
+                    <h1 id="hScore"><%if(!movies[i].reviews) { %>
                       <h1>N/A</h1>
                       <h4>Not Yet Reviewed</h4>
-                    <% } else { %>
-                    <%=movies[i].score.toFixed(2)%></h1>
+                    <% } else {
+                      let sum = 0;
+                      for(let x = 0; x < movies[i].reviews.length; x++) {
+                        sum += movies[i].reviews[x].score[4];
+                      }
+                      let score = sum / movies[i].reviews.length; %>
+                    <%=score.toFixed(2)%></h1>
                     <div class="revCountIndicate">
                       Out of <%=movies[i].reviews.length%> review(s)
                     </div>

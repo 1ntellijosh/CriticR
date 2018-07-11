@@ -29,14 +29,17 @@
             <a href="/users/new">Register to Review</a>
           </li>
           <% } else { %>
+            <li>
+              <a href="/users/user/<%=user._id%>">View My Reviews</a>
+            </li>
           <%if (user.super == true) { %>
             <li>
-                <a href="/media/new">Add Movie/Game</a>
+                <a href="/media/new">+ MOVIE/GAME</a>
+            </li>
+            <li>
+                <a href="/users/super">+ NEW MODERATOR</a>
             </li>
           <% } %>
-          <li>
-            <a href="/users/user/<%=user._id%>">View My Reviews</a>
-          </li>
           <!-- log out -->
           <li>
             <form action="/sessions?_method=DELETE" method="POST">
@@ -54,13 +57,24 @@
       <div id="specLine">
         <span><b>Studio/Production:</b> <%=media.pub%></span>
         <span><b>Genre:</b> <%=media.genre%></span>
-        <span><b></b>Cumulative Score:  <%=media.score.toFixed(2)%></span>
+        <span><b></b>Cumulative Score:
+        <% let sum = 0;
+        for(let x = 0; x < media.reviews.length; x++) {
+          sum += media.reviews[x].score[4];
+        }
+        let score = sum / media.reviews.length; %>
+        <%=score.toFixed(2)%></span>
       </div>
     <% } else { %>
       <div id="specLine">
         <span><b></b>Developer: <%=media.pub%></span>
         <span><b></b>Genre: <%=media.genre%></span>
-        <span><b></b>Cumulative Score:  <%=media.score.toFixed(2)%></span>
+        <span><b></b>Cumulative Score:  <% let sum = 0;
+        for(let x = 0; x < media.reviews.length; x++) {
+          sum += media.reviews[x].score[4];
+        }
+        let score = sum / media.reviews.length; %>
+        <%=score.toFixed(2)%></span>
       </div>
     <% } %>
     <div class="HolyGrail-body">
@@ -86,10 +100,9 @@
                   <% if (user) {
                   if (user.username == review.username || user.super == true) { %>
                     <a href="/reviews/review/<%=review.id%>/edit"><h4>Edit Review</h4></a>
-                  <% } %>
-                  <%if(user.super == true) { %>
-                    <!-- need to change to a form whe you get to this -->
-                    <button>Delete</button>
+                    <form action="/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                      <input type="submit" name="" value="Delete Review">
+                    </form>
                   <% } } %>
                 </div>
 
@@ -99,7 +112,7 @@
 
           <!-- review text -->
           <article class="rArticle">
-            <%let pArr = review.article.split('<br><br><br><br>');
+            <%let pArr = review.article.split('<br><br>');
             for (let i = 0; i < pArr.length; i++) { %>
               <p>
                 <%=pArr[i]%>
