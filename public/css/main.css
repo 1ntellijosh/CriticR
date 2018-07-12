@@ -394,13 +394,23 @@ box-shadow:
   margin: 25px auto;
   width:100%;
   color:rgb(225 225 225);
-
   display: flex;
   justify-content: flex-end;
 }
+
 .loginForm {
-  width: 50%;
+  width: 450px;
   margin: 0 auto;
+}
+.loginForm input {
+  float: right;
+}
+.superForm {
+  width: 700px;
+  margin: 0 auto;
+}
+.superForm input {
+  float: right;
 }
 legend {
   padding: 23px 0px;

@@ -54,7 +54,7 @@
 
       <div class="HolyGrail-content">
 
-        <h1 class="formH1"><%=user.username%>: New Review</h1>
+        <h1><%=user.username%>: New Review</h1>
         <div id="frontNav">
           <a href="/media/<%=media._id%>" id="mFilter">Back to <%=media.title%> Reviews Page</a>
           <a href="/" id="gFilter">Back to Main Page</a>
@@ -71,7 +71,7 @@
 
         <div id="lineAside">
           <%if (media.type == 'movie') { %>
-            <form class="newReviewForm" action="/reviews/movie/<%=media.title%>/<%=posterPasser%>/<%=user.username%>/<%=user._id%>/<%=media._id%>" method="POST">
+            <form class="movieRev newReviewForm" action="/reviews/movie/<%=media.title%>/<%=posterPasser%>/<%=user.username%>/<%=user._id%>/<%=media._id%>" method="POST">
               <fieldset class="">
                 <legend>&nbsp;&nbsp;&nbsp; MOVIE REVIEW: <%=media.title%></legend>
                 <div id="overWrap">

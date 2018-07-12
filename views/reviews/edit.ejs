@@ -42,7 +42,7 @@
           <% } %>
           <!-- log out -->
           <li>
-            <form action="/sessions?_method=DELETE" method="POST">
+            <form id="logOffForm" action="/sessions?_method=DELETE" method="POST">
               <input type="submit" value="Log Off" />
             </form>
           </li>
@@ -54,7 +54,7 @@
 
       <div class="HolyGrail-content">
 
-        <h1><%=review.username%>: Review Edit</h1>
+        <h1 id="nUTitle"><%=review.username%>: Review Edit</h1>
         <div id="frontNav">
           <a href="javascript:history.go(-1)" onclick="history.go(-1)">Back</a>
           <a href="/users/user/<%=review.author%>" id="mFilter">To My Reviews </a>
@@ -71,31 +71,39 @@
 
         <div id="lineAside">
           <%if (review.type == 'movie') { %>
-            <form class="movieRev" action="/reviews/movie/<%=review.title%>/<%=posterPasser%>/<%=review.username%>/<%=review.author%>/<%=review.media%>/<%=review._id%>/edit?_method=PUT" method="POST">
+            <form class="movieRev newReviewForm" action="/reviews/movie/<%=review.title%>/<%=posterPasser%>/<%=review.username%>/<%=review.author%>/<%=review.media%>/<%=review._id%>/edit?_method=PUT" method="POST">
               <fieldset class="">
                 <legend>&nbsp;&nbsp;&nbsp; MOVIE REVIEW: <%=review.title%></legend>
-                  <label for="rtitle">Review Title: </label>
-                  <input id="rtitle" type="text" name="rtitle" value="<%=review.rtitle%>"/>
-                  <label for="article">Review: </label>
-                  <textarea name="article" id="article" value=""><%let pArr = review.article.split('<br><br><br><br>');
-                  for (let i = 0; i < pArr.length; i++) { %>
-                      <%=pArr[i]%>
-                  <%}%></textarea>
-                  <!-- //score numbers\\ -->
+                <div id="overWrap">
+
+                  <div id="inWrap">
+                    <label for="rtitle">Review Title: </label>
+                    <input id="rtitle" type="text" name="rtitle" value="<%=review.rtitle%>"/>
+                  </div>
+                  <div id="inWrap">
+                    <label for="article">Review: </label>
+                    <textarea name="article" id="article" value=""><%let pArr = review.article.split('<br><br><br><br>');
+                    for (let i = 0; i < pArr.length; i++) { %>
+                        <%=pArr[i]%>
+                    <%}%></textarea>
+                  </div>
                   <div id="scoreBox">
-                    <label for="vis">SFX/Art/Cinematography:</label>
-                    <select id="vis" name="vis" value"<%=review.score[0]%>">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
+                    <div id="selWrap">
+                      <label for="vis">SFX/Art/Cinematography:</label>
+                      <select id="vis" name="vis" value"<%=review.score[0]%>">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                  </div>
+                  <div id="selWrap">
                     <label for="dir">Direction/Writing/Performances:</label>
                     <select id="dir" name="dir" value"<%=review.score[1]%>">
                       <option value="1">1</option>
@@ -109,6 +117,8 @@
                       <option value="9">9</option>
                       <option value="10">10</option>
                     </select>
+                  </div>
+                  <div id="selWrap">
                     <label for="snd">Sound:</label>
                     <select id="snd" name="snd" value"<%=review.score[2]%>">
                       <option value="1">1</option>
@@ -122,6 +132,8 @@
                       <option value="9">9</option>
                       <option value="10">10</option>
                     </select>
+                  </div>
+                  <div id="selWrap">
                     <label for="til">Tilt (Curve Score +/-):</label>
                     <select id="til" name="til" value"<%=review.score[3]%>">
                       <option value="1">1</option>
@@ -136,36 +148,30 @@
                       <option value="10">10</option>
                     </select>
                   </div>
+                  </div>
                   <input type="submit" value="Submit Edit" />
+                  </div>
                 </fieldset>
             </form>
           <% } else { %>
 
-            <form class="gameRev" action="/reviews/game/<%=review.title%>/<%=posterPasser%>/<%=review.username%>/<%=review.author%>/<%=review.media%>/<%=review._id%>/edit?_method=PUT" method="POST">
+            <form class="gameRev newReviewForm" action="/reviews/game/<%=review.title%>/<%=posterPasser%>/<%=review.username%>/<%=review.author%>/<%=review.media%>/<%=review._id%>/edit?_method=PUT" method="POST">
               <fieldset class="">
                 <legend>&nbsp;&nbsp;&nbsp; GAME REVIEW: <%=review.title%></legend>
-                <label for="rtitle">Review Title: </label>
-                <input id="rtitle" type="text" name="rtitle" value="<%=review.rtitle%>"/>
-                <label for="article">Review: </label>
-                <textarea name="article" id="article" value=""><%let pArr = review.article.split('<br><br><br><br>');
-                for (let i = 0; i < pArr.length; i++) { %>
-                    <%=pArr[i]%>
-                <%}%></textarea>
+                <div id="overWrap">
+                <div id="inWrap">
+                  <label for="rtitle">Review Title: </label>
+                  <input id="rtitle" type="text" name="rtitle" value="<%=review.rtitle%>"/>
+                </div>
+                <div id="inWrap">
+                  <label for="article">Review: </label>
+                  <textarea name="article" id="article" value=""><%let pArr = review.article.split('<br><br><br><br>');
+                  for (let i = 0; i < pArr.length; i++) { %>
+                      <%=pArr[i]%>
+                  <%}%></textarea>
+                </div>
                 <div id="scoreBox">
-                  <!-- //score numbers\\ -->
-                  <label for="vis">GFX/Visual/Art:</label>
-                  <select id="vis" name="vis" value"<%=review.score[0]%>">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                  </select>
+                <div id="selWrap">
                   <label for="dir">Gameplay/Direction/Writing:</label>
                   <select id="dir" name="dir" value"<%=review.score[1]%>">
                     <option value="1">1</option>
@@ -179,6 +185,23 @@
                     <option value="9">9</option>
                     <option value="10">10</option>
                   </select>
+                </div>
+                <div id="selWrap">
+                  <label for="vis">GFX/Visual/Art:</label>
+                  <select id="vis" name="vis" value"<%=review.score[0]%>">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                  </select>
+                </div>
+                <div id="selWrap">
                   <label for="snd">Sound:</label>
                   <select id="snd" name="snd" value"<%=review.score[2]%>">
                     <option value="1">1</option>
@@ -192,6 +215,8 @@
                     <option value="9">9</option>
                     <option value="10">10</option>
                   </select>
+                </div>
+                <div id="selWrap">
                   <label for="til">Tilt (Curve Score +/-):</label>
                   <select id="til" name="til" value"<%=review.score[3]%>">
                     <option value="1">1</option>
@@ -206,7 +231,10 @@
                     <option value="10">10</option>
                   </select>
                 </div>
+                  <!-- //score numbers\\ -->
+                </div>
                 <input type="submit" value="Submit Edit" />
+                </div>
             </fieldset>
             </form>
           <% } %>
