@@ -206,7 +206,7 @@ box-shadow:
   background: rgb(40, 40, 40);
   background-image: url(https://i.imgur.com/T9xy0mx.jpg);
   border-radius: 5px;
-  color: gray;
+  color: rgb(225 225 225);
 }
 #hScore:hover {
   text-decoration: underline;
