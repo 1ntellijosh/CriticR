@@ -2,7 +2,7 @@
 
 https://criticr.herokuapp.com/
 
-FYI: You can only add reviews, and edit your own reviews as a regular user. 
+FYI: You can only add, edit, and delete your own reviews as a regular user. 
 
 In order to edit/delete any review, or add/edit/delete any game/movie, you need to have moderator rights. I made a moderator profile login so you can mess around:
 
