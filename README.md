@@ -9,4 +9,13 @@ In order to edit/delete any review, or add/edit/delete any game/movie, you need 
 moderator username: admin
 moderator password: master
 
-when the site is lunched initially, the first moderator MUST be the first to register to the site. They will go to the url /users/super and server file will check to make sure there are no users in the database, and grant access to the moderator registration page. After that, if anybody goes to users/super, the site will see there are users and redirect to the home page. The only way the site will allow access to the moderator registration page would be if a logged in moderator goes to users/super. Moderators will also have a '+ Moderator' link at the top right of the page when logged in to get there as well. The new moderator would than put their new username and password in. 
+when the site is lunched initially, the first moderator MUST be the first to register to the site. They will go to the url /users/super and server file will check to make sure there are no users in the database, and grant access to the moderator registration page. After that, if anybody goes to users/super, the site will see there are users and redirect to the home page. The only way the site will allow access to the moderator registration page would be if a logged in moderator goes to users/super. Moderators will also have a '+ Moderator' link at the top right of the page when logged in to get there as well. The new moderator would than put their new username and password in.
+
+Tech Used:
+
+HTML/CSS
+JavaScript
+JQuery
+Node.js
+Express
+MongoDB/Mongoose
