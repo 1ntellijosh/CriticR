@@ -41,8 +41,9 @@
   display: inline-block;
   margin-right: 15px;
 }
-.header a {
+.header li a {
   font-size: 1.1em;
+  color: red;
 }
 .header a:visited {
   color: red;
