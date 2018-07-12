@@ -42,7 +42,7 @@
           <% } %>
           <!-- log out -->
           <li>
-            <form action="/sessions?_method=DELETE" method="POST">
+            <form id="logOffForm" action="/sessions?_method=DELETE" method="POST">
               <input type="submit" value="Log Off" />
             </form>
           </li>
@@ -56,7 +56,7 @@
         <div id="revCascade">
 
 
-          <h2><%=user.username%>'s Reviews</h2>
+          <h2 id="rUTitle"><%=user.username%>'s Reviews</h2>
 
             <div id="uSpecLine">
               <span><b>Critic since:</b> <% let date = new Date(user.createdAt) %>
@@ -73,9 +73,9 @@
 
             <%for (let i = 0; i < user.reviews.length; i++) {
               if (user.reviews[i].type == 'movie') { %>
-              <div class="revSum movie on">
+              <div class="uRevSum movie on">
               <% } else { %>
-              <div class="revSum game off">
+              <div class="uRevSum game off">
               <% } %>
 
                 <div class="uVIm">
@@ -85,6 +85,7 @@
                 </div>
 
                 <div class="uDetSum">
+                  <div class="uDetSumSmall">
                   <h4><%=user.reviews[i].rtitle%></h4>
                   <p class="smallGrays">
                     By: <%=user.reviews[i].username%> &nbsp;|&nbsp;
@@ -97,7 +98,7 @@
                     let parSlice = firstPar.slice(0, 175) %>
                     <%=parSlice%>... &nbsp;<a href="/reviews/review/<%=user.reviews[i]._id%>">Read Full Review</a>
                   </p>
-
+                </div>
                 </div>
 
                 <div class="uScoSum">

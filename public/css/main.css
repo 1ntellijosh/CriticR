@@ -106,6 +106,7 @@ ul {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  color: black;
 }
 #frontNav a {
   width: 100%;
@@ -350,7 +351,7 @@ box-shadow:
   background: -moz-linear-gradient(top, rgb(210, 210, 210) 0%,rgb(110, 110, 110) 100%);;
   background: -webkit-linear-gradient(top, rgb(210, 210, 210) 0%,rgb(110, 110, 110) 100%);
   color: black;
-  margin-bottom: 20px;
+  margin-top: 20px;
   border-radius: 5px;
 }
 .detSum {
@@ -396,6 +397,10 @@ box-shadow:
 
   display: flex;
   justify-content: flex-end;
+}
+.loginForm {
+  width: 50%;
+  margin: 0 auto;
 }
 legend {
   padding: 23px 0px;
@@ -502,6 +507,13 @@ input[type="submit"] {
   margin-top:10px;
 }
 /* review page cascade */
+#rAnnounce {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.6em;
+    color: Red;
+    margin-bottom: 0px;
+    margin-top: 100px;
+}
 #revCascade {
   width:86.5%;
   margin: 0 auto;
@@ -512,34 +524,66 @@ input[type="submit"] {
 #reviewHead {
   display: flex;
   flex-direction: row;
-  margin: 0 auto;
+  margin: 40px auto;
+  height: 265px;
+  width: 600px;
+  justify-content: space-around;
+  margin-bottom:30px;
 }
 #reviewHeadPoster {
-
+  width:50%;
+}
+#reviewHeadPoster img {
+  height: 100%;
+  margin-left: 14%;
+}
+#reviewHeadDetails {
+  width:50%;
+  display: flex;
+  align-items: center;
+}
+#reviewHeadDetails form input {
+  width: 125px;
+  margin: 0px;
+}
+#detInside {
+  margin-left: 8%;
+}
+.sDetail {
+  width: 80%;
 }
 .chartHolder {
   width: 450px;
+  height:100%;
   display: flex;
   flex-direction: row;
 }
 .chdets {
   line-height: 20px;
   text-align: left;
+  padding: 0px 20px 0px 20px;
+  line-height: 33px;
 }
 .chart {
   width: 225px;
-  min-width:225px;
-  border-right: 2px solid steelblue;
+  height: 100%;
+  min-width:249px;
+  border-right: 2px solid black;
 }
 .chartDiv {
   font: 10px sans-serif;
-  background-color: steelblue;
+  background-color: rgb(50 50 50);
   text-align: right;
   padding: 3px;
-  margin: 1px;
+  margin-bottom: 8px;
   color: white;
-  max-height: 12px;
-  min-height: 12px;
+  max-height: 20px;
+  min-height: 20px;
+}
+.avBox {
+  margin-right: 2.5%;
+  height: 120px;
+  width: 120px;
 }
 #reviewHeadDetails {
   display: flex;
@@ -630,11 +674,11 @@ input[type="submit"] {
 .rArticle {
   text-align: left;
   margin: 0 auto;
-  width: 85%;
+  width: 83%;
 }
 .rWind {
   width: 85%;
-  margin: 20px 0px 20px 0px;
+  margin: 25px auto 20px auto;
   border-radius: 12px;
   display: flex;
   flex-direction: row;
@@ -642,33 +686,81 @@ input[type="submit"] {
   margin-bottom: 10px;
   border-radius: 10px;
   padding:15px;
-  min-height: 150px;
-  background: lightgray;
+  min-height: 120px;
+  background-color: gray;
+  background: linear-gradient(top, rgb(210, 210, 210) 0%,rgb(110, 110, 110) 100%);
+  background: -moz-linear-gradient(top, rgb(210, 210, 210) 0%,rgb(110, 110, 110) 100%);;
+  background: -webkit-linear-gradient(top, rgb(210, 210, 210) 0%,rgb(110, 110, 110) 100%);
+  color: black;
 }
 /* user pages */
+#rUTitle {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.6em;
+  color: Red;
+  margin-bottom: 30px;
+  margin-top: 100px;
+}
 #uSpecLine {
-  margin: 10px auto;
+  margin: 25px auto;
   padding: 10px;
-  width: 30%;
+  width: 50%;
   display: flex;
   justify-content: space-between;
 }
+.uRevSum {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: gray;
+  background: linear-gradient(top, rgb(210, 210, 210) 0%,rgb(110, 110, 110) 100%);
+  background: -moz-linear-gradient(top, rgb(210, 210, 210) 0%,rgb(110, 110, 110) 100%);;
+  background: -webkit-linear-gradient(top, rgb(210, 210, 210) 0%,rgb(110, 110, 110) 100%);
+  color: black;
+  margin-top: 20px;
+  border-radius: 5px;
+}
 .uDetSum {
-  width: 60%;
+  width: 50%;
   text-align: left;
 }
+.uDetSumSmall {
+  margin-top: 30px;
+  width: 94%;
+}
+.uDetSumSmall a {
+  font-size: 1.1em;
+}
 .uScoSum {
-  border-left: 1px solid lightgray;
-  width: 20%;
+  border-left: 2px solid black;
+  width: 25%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.uScoSum a {
+  height: 135px;
+  width: 150px;
+  background-image: url(https://i.imgur.com/T9xy0mx.jpg);
+  color: rgb(225 225 225);
+  border-radius: 5px;
+}
 .uVIm {
-  width:20%;
+  height: 194px;
+  width:25%;
 }
 .uVIm img {
-  width:100%;
+  margin-top: 13px;
+  height: 100%;
+  -moz-box-shadow:
+    3px 4px 8px rgba(000,000,000,0.7);
+  -webkit-box-shadow:
+    3px 4px 8px rgba(000,000,000,0.7);
+  box-shadow:
+    3px 4px 8px rgba(000,000,000,0.7);
+    border-radius: 3px;
 }
 #logOffForm {
   width:60px;
@@ -693,6 +785,32 @@ input[type="submit"] {
   font-size: 1.3em;
   color: lightgray;
   width:100px;
+}
+#inv2 {
+  color: red;
+  font-family: 'Oswald', arial;
+}
+#invalid {
+  margin-top: 100px;
+  color: red;
+  font-family: 'Oswald', arial;
+}
+#invDiv {
+  width:66%;
+  margin: 0 auto;
+}
+#backButton {
+  background: black;
+  color: rgb(200 200 200);
+  font-family: 'Oswald', arial;
+  font-size: 1.2em;
+  border:2px solid black;
+}
+#nUTitle {
+  margin-top: 100px;
+  font-size:2.4em;
+  color: red;
+  font-family: 'Oswald', arial;
 }
 /* hide movies/games on filter */
 .on {
