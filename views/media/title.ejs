@@ -42,8 +42,8 @@
           <% } %>
           <!-- log out -->
           <li>
-            <form action="/sessions?_method=DELETE" method="POST">
-              <input id="logOffBtn" type="submit" value="Log Off" />
+            <form id="logOffForm" action="/sessions?_method=DELETE" method="POST">
+              <input type="submit" value="Log Off" />
             </form>
           </li>
           <% } %>
@@ -77,7 +77,7 @@
                 <!-- need to change to a form whe you get to this -->
                 <a href="/media/<%=media._id%>/edit">Edit Title</a><br />
                 ----------<br />
-                <form action="/media/<%=media._id%>?_method=DELETE" method="POST">
+                <form id="delForm" action="/media/<%=media._id%>?_method=DELETE" method="POST">
                   <input id="delBtn" type="submit" value="Delete Title" />
                 </form>
               <% } } %>
@@ -137,7 +137,10 @@
               <div class="revSum">
 
                 <div class="detSum">
-                  <h4><%=media.reviews[i].rtitle%></h4>
+                  <div class="detSmall">
+
+
+                  <a href="/reviews/review/<%=media.reviews[i]._id%>"><h4><%=media.reviews[i].rtitle%></h4></a>
                   <p class="smallGrays">
                     By: <a href="/users/user/<%=media.reviews[i].author%>"><%=media.reviews[i].username%></a> &nbsp;|&nbsp;
                     <% let date = new Date(media.reviews[i].createdAt) %>
@@ -150,10 +153,14 @@
                     <%=parSlice%>... &nbsp;<a href="/reviews/review/<%=media.reviews[i]._id%>">Read Full Review</a>
                   </p>
 
+                  </div>
                 </div>
 
                 <div class="scoSum">
-                  <a href="/reviews/review/<%=media.reviews[i]._id%>"><h1><%=media.reviews[i].score[4].toFixed(2)%></h1></a>
+                  <div class="scoSumSmall">
+                    <a href="/reviews/review/<%=media.reviews[i]._id%>"><h1><%=media.reviews[i].score[4].toFixed(2)%></h1></a>
+                  </div>
+
                 </div>
 
               </div>

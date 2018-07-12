@@ -175,6 +175,7 @@ router.get('/new/:id', (req, res) => {
       }
       if(foundReview.length == 0) {
         Media.findOne({_id: req.params.id}, (err, foundMedia) => {
+          console.log('routing to new review');
           res.render('./reviews/new.ejs', {
             user: req.session.currentUser,
             media: foundMedia

@@ -42,8 +42,8 @@
           <% } %>
           <!-- log out -->
           <li>
-            <form action="/sessions?_method=DELETE" method="POST">
-              <input type="submit" value="Log Off" />
+            <form id="logOffForm"action="/sessions?_method=DELETE" method="POST">
+              <input id="logOffBtn"type="submit" value="Log Off" />
             </form>
           </li>
           <% } %>
@@ -54,7 +54,7 @@
 
       <div class="HolyGrail-content">
 
-        <h1><%=user.username%>: New Review</h1>
+        <h1 class="formH1"><%=user.username%>: New Review</h1>
         <div id="frontNav">
           <a href="/media/<%=media._id%>" id="mFilter">Back to <%=media.title%> Reviews Page</a>
           <a href="/" id="gFilter">Back to Main Page</a>
@@ -71,16 +71,105 @@
 
         <div id="lineAside">
           <%if (media.type == 'movie') { %>
-            <form class="movieRev" action="/reviews/movie/<%=media.title%>/<%=posterPasser%>/<%=user.username%>/<%=user._id%>/<%=media._id%>" method="POST">
+            <form class="newReviewForm" action="/reviews/movie/<%=media.title%>/<%=posterPasser%>/<%=user.username%>/<%=user._id%>/<%=media._id%>" method="POST">
               <fieldset class="">
                 <legend>&nbsp;&nbsp;&nbsp; MOVIE REVIEW: <%=media.title%></legend>
+                <div id="overWrap">
+                  <div id="inWrap">
                   <label for="rtitle">Review Title: </label>
                   <input id="rtitle" type="text" name="rtitle" />
+                  </div>
+                  <div id="inWrap">
                   <label for="article">Review: </label>
-                  <textarea name="article" id="article" value=""></textarea>
+                  <textarea name="article" value=""></textarea>
+                  </div>
                   <!-- //score numbers\\ -->
                   <div id="scoreBox">
-                    <label for="vis">SFX/Art/Cinematography:</label>
+                    <div id="selWrap">
+                      <label for="vis">SFX/Art/Cinematography:</label>
+                      <select id="vis" name="vis">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </div>
+                    <div id="selWrap">
+                      <label for="dir">Direction/Writing/Performances:</label>
+                      <select id="dir" name="dir">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </div>
+                    <div id="selWrap">
+                      <label for="snd">Sound:</label>
+                      <select id="snd" name="snd">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </div>
+                    <div id="selWrap">
+                      <label for="til">Tilt (Curve Score +/-):</label>
+                      <select id="til" name="til">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </div>
+
+                  </div>
+                  <input type="submit" value="Submit Review" />
+                </div>
+                </fieldset>
+            </form>
+          <% } else { %>
+
+            <form class="newReviewForm gameRev" action="/reviews/game/<%=media.title%>/<%=posterPasser%>/<%=user.username%>/<%=user._id%>/<%=media._id%>" method="POST">
+              <fieldset class="">
+                <legend>&nbsp;&nbsp;&nbsp; GAME REVIEW: <%=media.title%></legend>
+                <div id="overWrap">
+                <div id="inWrap">
+                  <label for="rtitle">Review Title: </label>
+                  <input id="rtitle" type="text" name="rtitle" />
+                </div>
+                <div id="inWrap">
+                  <label for="article">Review: </label>
+                  <textarea name="article" id="article"
+                 value=""></textarea>
+                </div>
+                <!-- //score numbers\\ -->
+                <div id="scoreBox">
+                  <div id="selWrap">
+                    <label for="vis">GFX/Visual/Art:</label>
                     <select id="vis" name="vis">
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -93,7 +182,9 @@
                       <option value="9">9</option>
                       <option value="10">10</option>
                     </select>
-                    <label for="dir">Direction/Writing/Performances:</label>
+                  </div>
+                  <div id="selWrap">
+                    <label for="dir">Gameplay/Direction/Writing:</label>
                     <select id="dir" name="dir">
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -106,6 +197,8 @@
                       <option value="9">9</option>
                       <option value="10">10</option>
                     </select>
+                  </div>
+                  <div id="selWrap">
                     <label for="snd">Sound:</label>
                     <select id="snd" name="snd">
                       <option value="1">1</option>
@@ -119,6 +212,8 @@
                       <option value="9">9</option>
                       <option value="10">10</option>
                     </select>
+                  </div>
+                  <div id="selWrap">
                     <label for="til">Tilt (Curve Score +/-):</label>
                     <select id="til" name="til">
                       <option value="1">1</option>
@@ -133,74 +228,9 @@
                       <option value="10">10</option>
                     </select>
                   </div>
-                  <input type="submit" value="Submit Review" />
-                </fieldset>
-            </form>
-          <% } else { %>
-
-            <form class="gameRev" action="/reviews/game/<%=media.title%>/<%=posterPasser%>/<%=user.username%>/<%=user._id%>/<%=media._id%>" method="POST">
-              <fieldset class="">
-                <legend>&nbsp;&nbsp;&nbsp; GAME REVIEW: <%=media.title%></legend>
-                <label for="rtitle">Review Title: </label>
-                <input id="rtitle" type="text" name="rtitle" />
-                <label for="article">Review: </label>
-                <textarea name="article" id="article" value=""></textarea>
-                <div id="scoreBox">
-                  <!-- //score numbers\\ -->
-                  <label for="vis">GFX/Visual/Art:</label>
-                  <select id="vis" name="vis">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                  </select>
-                  <label for="dir">Gameplay/Direction/Writing:</label>
-                  <select id="dir" name="dir">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                  </select>
-                  <label for="snd">Sound:</label>
-                  <select id="snd" name="snd">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                  </select>
-                  <label for="til">Tilt (Curve Score +/-):</label>
-                  <select id="til" name="til">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                  </select>
                 </div>
                 <input type="submit" value="Submit Review" />
+              </div>
             </fieldset>
             </form>
           <% } %>

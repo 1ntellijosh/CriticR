@@ -47,13 +47,7 @@
 .header a:visited {
   color: red;
 }
-#logOffBtn {
-  background-color: black;
-  border: 1px solid black;
-  font-family: 'Oswald', cursive;
-  font-size: 1.1em;
-  color: lightgray;
-}
+
 a {
   text-decoration: none;
   font-family: 'Oswald', sans-serif;
@@ -111,6 +105,7 @@ ul {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
 }
 #frontNav a {
   width: 100%;
@@ -143,6 +138,7 @@ ul {
 .viewWind {
   width: 97%;
   padding: 5px 0px 5px 0px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -338,8 +334,6 @@ box-shadow:
   color: red;
   margin: 20px 0px 20px 0px;
 }
-
-
 .rollout {
   width:90%;
   margin: 0 auto;
@@ -363,6 +357,13 @@ box-shadow:
   width: 75%;
   text-align: left;
 }
+.detSmall {
+  width:90%;
+  margin: 0 auto;
+}
+.detSmall a {
+  font-size: 1.2em;
+}
 .scoSum {
   border-left: 2px solid black;
   width: 25%;
@@ -370,7 +371,136 @@ box-shadow:
   justify-content: center;
   align-items: center;
 }
+.scoSumSmall {
+  width: 140px;
+  height: 140px;
+  background: rgb(29 29 29);
+  background-image: url(https://i.imgur.com/T9xy0mx.jpg);
+  border-radius: 5px;
+}
+.scoSumSmall a {
+  color: lightgray;
+}
+/* forms */
+.formH1 {
+  margin-top: 100px;
+  color: red;
+  font-family: 'Oswald', cursive;
+}
+.newReviewForm {
+  background-color: black;
+  color: black;
+  margin: 25px auto;
+  width:100%;
+  color:rgb(225 225 225);
 
+  display: flex;
+  justify-content: flex-end;
+}
+legend {
+  padding: 23px 0px;
+  width:100%;
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.2em;
+  background: black;
+  color:red;
+  margin: 0px;
+  border-bottom: 2px solid black;
+}
+legend p {
+  font-size: .55em;
+  padding:0;
+  margin: 0;
+}
+fieldset {
+  border: 0;
+  padding: 0;
+  margin:0;
+  width: 100%;
+}
+#overWrap {
+  margin: 35px 0;
+}
+#inWrap {
+  width:96%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 30px;
+}
+#scoreBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+}
+#scoreBox select {
+  width:20%;
+}
+#selWrap {
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+#texWrap {
+  width:85%;
+  margin-left: 15px;;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items:  flex-start;
+}
+#butWrap {
+  width:85%;
+  margin-left: 15px;;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items:  flex-start;
+}
+#mesL {
+  margin-top: 23px;
+}
+textarea {
+  height: 250px;
+}
+label {
+  font-family: 'Oswald', serif;
+  font-weight: 700;
+  font-size: 1.2em;
+  float:left;
+  clear:both;
+  color:rgb(225 225 225);
+}
+input, textarea, select {
+  font-family: arial, serif;
+  color:rgb(120, 120, 120);
+  font-size: 1em;
+  width: 77%;
+  /* padding: 12px 0; */
+  margin: 5px 0;
+  margin-left: 15px;
+  border: 2px solid rgb(232, 232, 232);
+  background: white;
+}
+select {
+  height: 42px;
+  width: 77.5%;
+}
+input[type="submit"] {
+  background-color: red;
+  font-family: 'Oswald', serif;
+  color: white;
+  font-size: 1.35em;
+  padding: 8px 0px;
+  width:20%;
+  border-radius: 5px;
+  margin-left: 8%;
+  margin-top:10px;
+}
 /* review page cascade */
 #revCascade {
   width:86.5%;
@@ -539,6 +669,30 @@ box-shadow:
 }
 .uVIm img {
   width:100%;
+}
+#logOffForm {
+  width:60px;
+}
+#logOffForm input {
+  background-color: black;
+  border: 1px solid black;
+  font-family: 'Oswald', cursive;
+  font-size: 1.1em;
+  color: lightgray;
+  width:100%;
+}
+#delForm {
+  width: 100px;
+  margin-right: 0;
+  padding: 0;
+}
+#delBtn {
+  background-color: black;
+  border: 1px solid black;
+  font-family: 'Oswald', cursive;
+  font-size: 1.3em;
+  color: lightgray;
+  width:100px;
 }
 /* hide movies/games on filter */
 .on {
