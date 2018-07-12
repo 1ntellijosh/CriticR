@@ -53,26 +53,26 @@ app.get('/invalid', (req, res) => {
   });
 })
 
-//delete user database
-app.get('/deleteusers', (req, res) => {
-  Users.remove({}, (err, data) => {
-    res.redirect('/');
-  });
-})
-
-//delete review database
-app.get('/deleterevs', (req, res) => {
-  Reviews.remove({}, (err, data) => {
-    res.redirect('/');
-  });
-})
-
-//delete media database
-app.get('/deletemedia', (req, res) => {
-  Media.remove({}, (err, data) => {
-    res.redirect('/');
-  });
-})
+// //delete user database
+// app.get('/deleteusers', (req, res) => {
+//   Users.remove({}, (err, data) => {
+//     res.redirect('/');
+//   });
+// })
+//
+// //delete review database
+// app.get('/deleterevs', (req, res) => {
+//   Reviews.remove({}, (err, data) => {
+//     res.redirect('/');
+//   });
+// })
+//
+// //delete media database
+// app.get('/deletemedia', (req, res) => {
+//   Media.remove({}, (err, data) => {
+//     res.redirect('/');
+//   });
+// })
 
 // CONTROLLERS
 const userController = require('./controllers/users.js');

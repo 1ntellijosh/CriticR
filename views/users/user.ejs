@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>CriticR</title>
+    <title>CriticR: <%=user.username%></title>
     <script
        src="https://code.jquery.com/jquery-3.3.1.min.js"
        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -86,7 +86,8 @@
 
                 <div class="uDetSum">
                   <div class="uDetSumSmall">
-                  <h4><%=user.reviews[i].rtitle%></h4>
+                  <a href="/reviews/review/<%=user.reviews[i]._id%>">
+                    <h4><%=user.reviews[i].rtitle%></h4></a>
                   <p class="smallGrays">
                     By: <%=user.reviews[i].username%> &nbsp;|&nbsp;
                     <% let date = new Date(user.reviews[i].createdAt) %>
