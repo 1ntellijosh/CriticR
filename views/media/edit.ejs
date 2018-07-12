@@ -14,7 +14,7 @@
     <div class="header">
       <!-- title //not used on main index page\\-->
       <div class="header-title">
-        <a href="/">CriticR.</a>
+        <a href="/"><h5>CriticR.</h5></a>
       </div>
       <!-- navigation -->
       <div class="header-nav">
@@ -42,7 +42,7 @@
           <% } %>
           <!-- log out -->
           <li>
-            <form action="/sessions?_method=DELETE" method="POST">
+            <form id="logOffForm" action="/sessions?_method=DELETE" method="POST">
               <input type="submit" value="Log Off" />
             </form>
           </li>
@@ -58,57 +58,70 @@
 
         <div id="lineAside">
 
-          <form class="mediaEditForm" action="/media/<%=media._id%>?_method=PUT" method="POST">
+          <form class="mediaEditForm newReviewForm" action="/media/<%=media._id%>?_method=PUT" method="POST">
             <fieldset class="">
               <legend>&nbsp;&nbsp;&nbsp; EDIT MEDIA</legend>
-                <label for="title">Title: </label>
-                <input id="title" type="text" name="title" value="<%=media.title%>"/>
-                <label for="pub">Studio/Production: </label>
-                <input id="pub" type="text" name="pub" value="<%=media.pub%>"/>
-                <label for="genre">Genre: </label>
-                <% if (media.type == 'movie') { %>
-                  <select id="genre" name="genre">
-                    <option value="Action">Action</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Animation">Animation</option>
-                    <option value="Childrens">Children</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Documentary">Documentary</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Romance Comedy">Romance Comedy</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="Western">Western</option>
-                  </select>
-                <% } else { %>
-                  <select id="genre" name="genre">
-                    <option value="Action">Action</option>
-                    <option value="Action RPG">Action RPG</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Beat 'Em Up">Beat 'Em Up</option>
-                    <option value="Dance/Rhythm">Dance/Rhythm</option>
-                    <option value="Fighting">Fighting</option>
-                    <option value="FPS">FPS</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Indie">Indie</option>
-                    <option value="Platformer">Platformer</option>
-                    <option value="Puzzle">Puzzle</option>
-                    <option value="Racing">RPG</option>
-                    <option value="RPG">RPG</option>
-                    <option value="Shooter">Shooter</option>
-                    <option value="Simulation">Simulation</option>
-                    <option value="Sports">Sports</option>
-                    <option value="Strategy/RTS">Strategy/RTS</option>
-                    <option value="Survival Horror">Survival Horror</option>
-                  </select>
-                <% } %>
-                <label for="pimg">Title Cover: </label>
-                <input id="pimg" type="text" name="poster" value="<%=media.poster%>"/>
-                <label for="img">Images: </label>
-                <% let imageString = media.images.join(', '); %>
-                <input id="img" type="text" name="img" value="<%=imageString%>" />
-                <input type="submit" value="Submit New Media" />
+                <div id="overWrap">
+                  <div id="inWrap">
+                    <label for="title">Title: </label>
+                    <input id="title" type="text" name="title" value="<%=media.title%>"/>
+                  </div>
+                  <div id="inWrap">
+                    <label for="pub">Studio/Production: </label>
+                    <input id="pub" type="text" name="pub" value="<%=media.pub%>"/>
+                  </div>
+                  <div id="selWrap">
+                    <label for="genre">Genre: </label>
+                    <% if (media.type == 'movie') { %>
+                      <select id="genre" name="genre">
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Animation">Animation</option>
+                        <option value="Childrens">Children</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Documentary">Documentary</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Romance Comedy">Romance Comedy</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="Western">Western</option>
+                      </select>
+                    <% } else { %>
+                      <select id="genre" name="genre">
+                        <option value="Action">Action</option>
+                        <option value="Action RPG">Action RPG</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Beat 'Em Up">Beat 'Em Up</option>
+                        <option value="Dance/Rhythm">Dance/Rhythm</option>
+                        <option value="Fighting">Fighting</option>
+                        <option value="FPS">FPS</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Indie">Indie</option>
+                        <option value="Platformer">Platformer</option>
+                        <option value="Puzzle">Puzzle</option>
+                        <option value="Racing">RPG</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Shooter">Shooter</option>
+                        <option value="Simulation">Simulation</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Strategy/RTS">Strategy/RTS</option>
+                        <option value="Survival Horror">Survival Horror</option>
+                      </select>
+                    <% } %>
+                  </div>
+                  <div id="inWrap">
+                    <label for="pimg">Title Cover: </label>
+                    <input id="pimg" type="text" name="poster" value="<%=media.poster%>"/>
+                  </div>
+                  <div id="inWrap">
+                    <label for="img">Images: </label>
+                    <% let imageString = media.images.join(', '); %>
+                    <textarea id="img" type="text" name="img" value=""><%=imageString%></textarea>
+                  </div>
+                  <input type="submit" value="Submit New Media" />
+                </div>
+
               </fieldset>
           </form>
     </div>

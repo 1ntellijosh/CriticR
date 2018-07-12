@@ -559,6 +559,9 @@ input[type="submit"] {
 #detInside {
   margin-left: 8%;
 }
+#detInside a {
+  color: rgb(225 225 225);
+}
 .sDetail {
   width: 80%;
 }

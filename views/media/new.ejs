@@ -42,7 +42,7 @@
           <% } %>
           <!-- log out -->
           <li>
-            <form action="/sessions?_method=DELETE" method="POST">
+            <form id="logOffForm" action="/sessions?_method=DELETE" method="POST">
               <input type="submit" value="Log Off" />
             </form>
           </li>
@@ -54,7 +54,7 @@
 
       <div class="HolyGrail-content">
 
-        <h1><%=user.username%>: New Media Entry</h1>
+        <h1 id="nUTitle"><%=user.username%>: New Media Entry</h1>
         <div id="frontNav">
           <a href="#" id="mFilter">Movies</a>
           <a href="#" id="gFilter">Games</a>
@@ -62,68 +62,93 @@
 
         <div id="lineAside">
 
-          <form class="movieRev on" action="/media/movie" method="POST">
+          <form class="newReviewForm movieRev on" action="/media/movie" method="POST">
             <fieldset class="">
               <legend>&nbsp;&nbsp;&nbsp; ENTER NEW MOVIE</legend>
-                <label for="title">Title: </label>
-                <input id="title" type="text" name="title" />
-                <label for="pub">Studio/Production: </label>
-                <input id="pub" type="text" name="pub" />
-                <label for="genre">Genre: </label>
-                <select id="genre" name="genre">
-                  <option value="Action">Action</option>
-                  <option value="Adventure">Adventure</option>
-                  <option value="Animation">Animation</option>
-                  <option value="Childrens">Children</option>
-                  <option value="Comedy">Comedy</option>
-                  <option value="Documentary">Documentary</option>
-                  <option value="Drama">Drama</option>
-                  <option value="Horror">Horror</option>
-                  <option value="Romance">Romance</option>
-                  <option value="Romance Comedy">Romance Comedy</option>
-                  <option value="Thriller">Thriller</option>
-                  <option value="Western">Western</option>
-                </select>
-                <label for="pimg">Title Cover: </label>
-                <input id="pimg" type="text" name="poster" placeholder="Image link"/>
-                <label for="img">Images: </label>
-                <input id="img" type="text" name="img" placeholder="Please add each image link with a \',\' between them." />
+                <div id="overWrap">
+                <div id="inWrap">
+                  <label for="title">Title: </label>
+                  <input id="title" type="text" name="title" />
+                </div>
+                <div id="inWrap">
+                  <label for="pub">Studio/Production: </label>
+                  <input id="pub" type="text" name="pub" />
+                </div>
+                <div id="selWrap">
+                  <label for="genre">Genre: </label>
+                  <select id="genre" name="genre">
+                    <option value="Action">Action</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Childrens">Children</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Documentary">Documentary</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Romance Comedy">Romance Comedy</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Western">Western</option>
+                  </select>
+                </div>
+                <div id="inWrap">
+                  <label for="pimg">Title Cover: </label>
+                  <input id="pimg" type="text" name="poster" placeholder="Image link"/>
+                </div>
+                <div id="inWrap">
+                  <label for="img">Images: </label>
+                  <textarea id="img" type="text" name="img" >Please add each image link with a ', ' between them</textarea>
+                </div>
                 <input type="submit" value="Submit New Media" />
+                </div>
               </fieldset>
           </form>
-      <form class="gameRev off" action="/media/game" method="POST">
+      <form class="newReviewForm gameRev off" action="/media/game" method="POST">
         <fieldset class="">
           <legend>&nbsp;&nbsp;&nbsp; ENTER NEW GAME</legend>
-          <label for="title">Title: </label>
-          <input id="title" type="text" name="title" />
-          <label for="pub">Developer: </label>
-          <input id="pub" type="text" name="pub" />
-          <label id="genre" for="genre">Genre: </label>
-          <select id="genre" name="genre">
-            <option value="Action">Action</option>
-            <option value="Action RPG">Action RPG</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Beat 'Em Up">Beat 'Em Up</option>
-            <option value="Dance/Rhythm">Dance/Rhythm</option>
-            <option value="Fighting">Fighting</option>
-            <option value="FPS">FPS</option>
-            <option value="Horror">Horror</option>
-            <option value="Indie">Indie</option>
-            <option value="Platformer">Platformer</option>
-            <option value="Puzzle">Puzzle</option>
-            <option value="Racing">RPG</option>
-            <option value="RPG">RPG</option>
-            <option value="Shooter">Shooter</option>
-            <option value="Simulation">Simulation</option>
-            <option value="Sports">Sports</option>
-            <option value="Strategy/RTS">Strategy/RTS</option>
-            <option value="Survival Horror">Survival Horror</option>
-          </select>
-          <label for="pimg">Title Cover: </label>
-          <input id="pimg" type="text" name="poster" placeholder="Image link" />
-          <label for="img">Images: </label>
-          <input id="img" type="text" name="img" placeholder="Please add each image link with a \',\' between them." />
-          <input type="submit" value="Submit New Media" />
+          <div id="overWrap">
+            <div id="inWrap">
+              <label for="title">Title: </label>
+              <input id="title" type="text" name="title" />
+            </div>
+            <div id="inWrap">
+              <label for="pub">Developer: </label>
+              <input id="pub" type="text" name="pub" />
+            </div>
+            <div id="selWrap">
+              <label id="genre" for="genre">Genre: </label>
+              <select id="genre" name="genre">
+                <option value="Action">Action</option>
+                <option value="Action RPG">Action RPG</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Beat 'Em Up">Beat 'Em Up</option>
+                <option value="Dance/Rhythm">Dance/Rhythm</option>
+                <option value="Fighting">Fighting</option>
+                <option value="FPS">FPS</option>
+                <option value="Horror">Horror</option>
+                <option value="Indie">Indie</option>
+                <option value="Platformer">Platformer</option>
+                <option value="Puzzle">Puzzle</option>
+                <option value="Racing">RPG</option>
+                <option value="RPG">RPG</option>
+                <option value="Shooter">Shooter</option>
+                <option value="Simulation">Simulation</option>
+                <option value="Sports">Sports</option>
+                <option value="Strategy/RTS">Strategy/RTS</option>
+                <option value="Survival Horror">Survival Horror</option>
+              </select>
+            </div>
+            <div id="inWrap">
+              <label for="pimg">Title Cover: </label>
+              <input id="pimg" type="text" name="poster" placeholder="Image link" />
+            </div>
+            <div id="inWrap">
+              <label for="img">Images: </label>
+              <textarea id="img" type="text" name="img" >Please add each image link with a ', ' between them.</textarea>
+            </div>
+            <input type="submit" value="Submit New Media" />
+          </div>
+
       </fieldset>
       </form>
     </div>
