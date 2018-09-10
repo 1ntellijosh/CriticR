@@ -10,7 +10,7 @@ const mediaSchema = new Schema({
   images: [String],
   score: Number,
   reviews: [{
-
+        // Review entities are related to media model so they can be populated together. 
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Reviews'
 

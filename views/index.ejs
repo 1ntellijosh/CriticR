@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>CriticR. Reviews By The People, For The People.</title>
+    <!--********
+      Main index page. Loads all movies and games to in rollout
+    ********-->
     <link rel="icon"
       type="image/png"
       href="https://i.imgur.com/GyQ3t9i.png">
@@ -45,17 +48,17 @@
             </li>
           <% } %>
         </ul>
+        <!-- log out -->
         <form id="logOffForm" action="/sessions?_method=DELETE" method="POST">
           <input id="logOffBtn" type="submit" value="Log Off" />
         </form>
-        <!-- log out -->
         <% } %>
       </div>
     </div>
     <h1 id="mainLogo">CriticR.</h1>
     <h3 id="mainSub">Reviews By The People, For The People.</h3>
     <div class="HolyGrail-body">
-
+      <!-- main menu toggle to switch between movies and games. JQuery shows and hides each rollout according to what is clicked. movies (mfilter is displayed first by default) -->
       <div class="HolyGrail-content">
         <div id="frontNav">
           <a href="#" id="mFilter">Latest Movies</a>
@@ -64,9 +67,10 @@
 
         <div id="lineAside">
           <main id="mLineUp" class="lineUps on">
-
+              <!-- populate the movies pulled in server.js with '/' route  -->
               <%for (let i = 0; i < movies.length; i++) { %>
                 <div class="viewWind on">
+                 <!-- left part of main movie rollout div. shows, poster, title, details -->
                   <div id="lefterDiv">
                     <div class="vIm">
                       <a href="/media/<%=movies[i]._id%>">
@@ -84,6 +88,7 @@
                     </div>
 
                   </div>
+                  <!--Scores detailed on the right side of the page. -->
                     <div class="sOutBox">
                       <div class="scoreBox">
                       <%if(movies[i].reviews.length ==0) { %>
@@ -115,9 +120,10 @@
 
           </main>
           <main id="gLineUp" class="lineUps off">
-
+            <!-- populate the games pulled in server.js with '/' route  -->
             <%for (let i = 0; i < games.length; i++) { %>
               <div class="viewWind on">
+                <!-- left side of game rollout div. game poster and details -->
                 <div id="lefterDiv">
                   <div class="vIm">
                     <a href="/media/<%=games[i]._id%>">
@@ -134,6 +140,7 @@
                   </div>
 
                 </div>
+                <!-- right side of game rollout div. score details -->
                 <div class="sOutBox">
                   <div class="scoreBox">
                     <%if(games[i].reviews.length ==0) { %>
@@ -164,7 +171,7 @@
             <% } %>
 
           </main>
-
+          <!-- search/about links. dummy links for now. -->
           <aside class="HolyGrail-ads">
             <div id="rMenu">
                   <a href="#">Search</a>
@@ -181,6 +188,7 @@
     </div>
     <footer>…</footer>
   </body>
+  <!-- JQuery for the movie/game filter div rendered above. switches css display properties between movies and games according to which setcion the user wants to see. Moveis on by default -->
   <script>
     $('#mFilter').click(function () {
       $('#gLineUp').removeClass('on').addClass('off');

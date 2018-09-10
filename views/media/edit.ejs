@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>CriticR: Media Edit</title>
+    <!--********
+      Page used to enter a edit and existing movie/game title in the database. Only moderator users ('super' users) can edit a movie/game title. Title information pre-populated in the form fields for editing.
+    ********-->
     <link rel="icon"
       type="image/png"
       href="https://i.imgur.com/GyQ3t9i.png">
@@ -60,7 +63,7 @@
         <h1><%=user.username%>: <%=media.title%> Edit</h1>
 
         <div id="lineAside">
-
+          <!-- edit form. Either game or movie fields will populate according to whichever is being edited. -->
           <form class="mediaEditForm newReviewForm" action="/media/<%=media._id%>?_method=PUT" method="POST">
             <fieldset class="">
               <legend>&nbsp;&nbsp;&nbsp; EDIT MEDIA</legend>

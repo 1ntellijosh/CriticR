@@ -28,14 +28,18 @@ const Media = require('./models/media.js');
 //ROUTES
 app.get('/', (req, res) => {
 
+  //pull all games on front page load, populate them with reviews (related in mongo database). Limit to 10. Would theoretically limit to 10 for future update to 10 most recent movies/games and 10 most popular movies/games
   Media.find({type: "movie"}).populate('reviews').sort({createdAt: 'desc'}).limit(10).exec(function(err, data){
   let movs = data;
   // console.log(movs);
 
+
+  //pull all games on front page load, populate them with reviews (related in mongo database). Limit to 10 for front page as well.
   Media.find({type: "game"}).populate('reviews').sort({createdAt: 'desc'}).limit(10).exec(function(err, data){
     let gams = data;
     // console.log(gams);
 
+    //render the main index page and populate the game/movie results. also send relevant user data 
     res.render('index.ejs', {
       user: req.session.currentUser,
       movies: movs,
@@ -47,11 +51,14 @@ app.get('/', (req, res) => {
 
 })
 
+//invalid login page
 app.get('/invalid', (req, res) => {
   res.render('invalid.ejs', {
     user: req.session.currentUser
   });
 })
+
+//development routes to delete users, movies and reviews
 
 // //delete user database
 // app.get('/deleteusers', (req, res) => {
@@ -74,7 +81,7 @@ app.get('/invalid', (req, res) => {
 //   });
 // })
 
-// CONTROLLERS
+// CONTROLLERS -
 const userController = require('./controllers/users.js');
 app.use('/users', userController);
 const sessController = require('./controllers/sessions.js');
@@ -89,7 +96,6 @@ app.listen(PORT, () => {
 })
 
 //DATABASE CONNECTION AND FEEDBACK
-
 mongoose.connect(mongoUri);
 const db = mongoose.connection;
 db.on('open', () => {

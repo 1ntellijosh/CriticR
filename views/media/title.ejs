@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>CriticR: <%=media.title%></title>
+    <!--********
+      Main view page for a particular movie/game title. The details are rendered at the top, followed by the image gallery modal, then the user reviews for the title.
+    ********-->
     <link rel="icon"
       type="image/png"
       href="https://i.imgur.com/GyQ3t9i.png">
@@ -55,7 +58,7 @@
     </div>
     <div id="bumper">
     <div class="HolyGrail-body">
-
+      <!-- movie/game title and details -->
       <div class="HolyGrail-content">
         <h1 id="rTitle"><%=media.title%></h1>
         <div id="revCascade">
@@ -109,7 +112,7 @@
           </div>
 
           </div>
-
+          <!-- image gallery carousel -->
           <div class="galContain">
 
             <div class="carousel-button previous">
@@ -130,7 +133,7 @@
               <h3>></h3>
             </div>
           </div>
-
+          <!-- user reviews submitted for the title -->
           <h2 id="rBanner">Reviews</h2>
 
           <div class="rollout">
@@ -178,6 +181,7 @@
     </div>
     <footer>…</footer>
   </body>
+  <!-- JQuery script for the image carousel -->
   <script>
       let currentImgIndex = 0;
       const highestIndex = $('.carousel-images').children().length -1;

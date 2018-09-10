@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>CriticR: <%=media.title%> Review</title>
+    <!--********
+      Review view page. This page is rendered for both users viewing another user's reviews as well as a user viewing their own. Some elements will be shown or availabe according to whichever situation is involved. EI another user will not have the Edit option available to them on a review if they are on another user's page.
+    ********-->
     <link rel="icon"
       type="image/png"
       href="https://i.imgur.com/GyQ3t9i.png">
@@ -141,6 +144,7 @@
                   </div>
                 </div>
               <% } else { %>
+                <!-- scores rendered visually according to score. Div widths are rendered to a certain pixel count according to score, making a score bar for each category. -->
                 <div class="chartHolder">
                   <div class="chdets">
                     GFX/Art/Design: <br />

@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>CriticR: New Media</title>
+    <!--********
+      page used to enter a new movie/game title into the database. Since there is only one entity for each game/movie so the reviews can be aggregated to it, only moderator users ('super' users) can add new movie/game titles.
+    ********-->
     <link rel="icon"
       type="image/png"
       href="https://i.imgur.com/GyQ3t9i.png">
@@ -62,7 +65,7 @@
           <a href="#" id="mFilter">Movies</a>
           <a href="#" id="gFilter">Games</a>
         </div>
-
+        <!-- FORM FOR NEW MOVIE ENTRY -->
         <div id="lineAside">
 
           <form class="newReviewForm movieRev on" action="/media/movie" method="POST">
@@ -106,6 +109,7 @@
                 </div>
               </fieldset>
           </form>
+      <!-- FORM FOR NEW GAME ENTRY -->
       <form class="newReviewForm gameRev off" action="/media/game" method="POST">
         <fieldset class="">
           <legend>&nbsp;&nbsp;&nbsp; ENTER NEW GAME</legend>
@@ -161,6 +165,7 @@
   </div>
     <footer>…</footer>
   </body>
+  <!-- JQuery script to switch between new movie/game -->
   <script>
     $('#gFilter').click(function () {
       $('.movieRev').removeClass('on').addClass('off');

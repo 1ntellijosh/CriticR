@@ -7,7 +7,7 @@ const userSchema = new Schema({
   img: String,
   super: Boolean,
   reviews: [{
-
+        // Review entities are related to user model so they can be populated together.
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Reviews'
 

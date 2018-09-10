@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>CriticR: <%=user.username%></title>
+    <!--********
+      User page. This page is rendered when user views their own reviews as well as when another user views another user's page.
+    ********-->
     <link rel="icon"
       type="image/png"
       href="https://i.imgur.com/GyQ3t9i.png">
@@ -58,7 +61,7 @@
       <div class="HolyGrail-content">
         <div id="revCascade">
 
-
+          <!-- user's details. -->
           <h2 id="rUTitle"><%=user.username%>'s Reviews</h2>
 
             <div id="uSpecLine">
@@ -66,12 +69,12 @@
               <%=(date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear()%></span>
               <span><b>Total Reviews:</b>  <%=user.reviews.length%>
             </div>
-
+            <!-- game movie filter just like on index page -->
           <div id="frontNav">
             <a href="#" id="mFilter">Movies</a>
             <a href="#" id="gFilter">Games</a>
           </div>
-
+          <!-- rollout of all movies/game reviews the user has made -->
           <div class="rollout">
 
             <%for (let i = 0; i < user.reviews.length; i++) {
@@ -89,6 +92,7 @@
 
                 <div class="uDetSum">
                   <div class="uDetSumSmall">
+                    <!-- click a review to view it -->
                   <a href="/reviews/review/<%=user.reviews[i]._id%>">
                     <h4><%=user.reviews[i].rtitle%></h4></a>
                   <p class="smallGrays">
@@ -120,6 +124,7 @@
     </div>
     <footer>…</footer>
   </body>
+  <!-- JQuery switch  to show movies/games from user -->
   <script>
     $('#mFilter').click(function () {
       $('.game').removeClass('on').addClass('off');

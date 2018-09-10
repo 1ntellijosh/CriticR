@@ -7,6 +7,7 @@ const Users = require('../models/users.js');
 const Reviews = require('../models/reviews.js');
 const Media = require('../models/media.js');
 
+//enter new review into the database.
 router.post('/:type/:title/:poster/:sn/:id/:mId', (req, res) => {
   //make a review object for database
   let review = {};
@@ -15,7 +16,7 @@ router.post('/:type/:title/:poster/:sn/:id/:mId', (req, res) => {
   review.media = req.params.mId;
   review.rtitle = req.body.rtitle;
   review.title = req.params.title;
-
+  //parse poster links for wild characters that created issues in url params passing
   let postArray = req.params.poster.split('');
   for (let i = 0; i < postArray.length; i++) {
     if (postArray[i] == '~') {
@@ -27,9 +28,11 @@ router.post('/:type/:title/:poster/:sn/:id/:mId', (req, res) => {
 
   review.poster = posterPasser;
   review.username = req.params.sn;
+  //parse review articles for paragraphs
   let art = req.body.article;
   art = art.replace(/(?:\\[rn]|[\r\n])/g,"<br>");
   review.article = art;
+  //review scores parsed to integer
   let score = [];
   let vis = parseInt(req.body.vis)
   let dir = parseInt(req.body.dir)
@@ -50,15 +53,17 @@ router.post('/:type/:title/:poster/:sn/:id/:mId', (req, res) => {
     } else {
       // console.log(data)
       let reviewObj = madeReview;
+      //push review to user's review array
       Users.findOneAndUpdate({_id: madeReview.author}, {$push: {reviews: reviewObj}}, {new: true}, (err, data)=>{
     if (err){
       console.log(err);
     } else {
+      //push review to media title's review array
       Media.findOneAndUpdate({_id: req.params.mId}, {$push: {reviews: reviewObj}}, {new: true}, (err, data) => {
         if(err){
           console.log(err)
         } else {
-          // console.log(data)
+          //reroute to view the review
           res.redirect('/media/'+req.params.mId);
         }
       })
@@ -67,7 +72,7 @@ router.post('/:type/:title/:poster/:sn/:id/:mId', (req, res) => {
     }
   });
 })
-
+//delete review route
 router.delete('/:id/', (req, res) => {
   Reviews.findByIdAndRemove(req.params.id, (err, data) => {
   // console.log(data + 'removed from reviews');
@@ -80,7 +85,7 @@ router.delete('/:id/', (req, res) => {
   })
   })
 })
-
+//route to edit review
 router.get('/review/:id/edit', (req, res) => {
   if(!req.session.currentUser) {
     redirect('/');
@@ -94,7 +99,7 @@ router.get('/review/:id/edit', (req, res) => {
     })
   }
 })
-
+//route to edit review.
 router.put('/:type/:title/:poster/:sn/:id/:mId/:rId/edit', (req, res) => {
   //make a review object for database
   let review = {};
@@ -140,7 +145,7 @@ router.put('/:type/:title/:poster/:sn/:id/:mId/:rId/edit', (req, res) => {
 
   });//end of review create
 })
-
+//route to view review.
 router.get('/review/:id', (req, res) => {
   Reviews.findOne({_id:req.params.id}, (err, foundReview) => {
     if (err){
@@ -158,14 +163,16 @@ router.get('/review/:id', (req, res) => {
   }
   })
 })
-
+//route to new review form
 router.get('/new/:id', (req, res) => {
+  //if not logged in, reroute to login
   if(!req.session.currentUser) {
     res.redirect('/sessions/new');
   }
   //add checker for if user already reviewed title here
   else {
     console.log(req.session.currentUser.username);
+    //check to see if user has already made review for this title. if so, route to the review made already
     Reviews.find({$and: [{media: req.params.id}, {username: req.session.currentUser.username}]}, (err, foundReview) => {
       console.log(foundReview);
       let revId;
@@ -173,6 +180,7 @@ router.get('/new/:id', (req, res) => {
         revId = foundReview[0]._id;
               console.log(revId);
       }
+      //if user has not made a review for the title route to new review form.
       if(foundReview.length == 0) {
         Media.findOne({_id: req.params.id}, (err, foundMedia) => {
           console.log('routing to new review');
